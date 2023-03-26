@@ -1,0 +1,12 @@
+{
+  "title": "重生之前端面试小书",
+  "author": "charlesix59",
+  "description": "这是在一次求职失败之后编写的前端面试小书",
+  "language": "zh-hans",
+  "direction": "ltr",
+  "plugins": [
+    "highlight",
+    "search",
+    "livereload"
+  ]
+}
