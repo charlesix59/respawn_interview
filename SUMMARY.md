@@ -9,7 +9,7 @@
     * [HTTP协议](network/http.md)
 * [HTML](html/readme.md)
     * [浏览器](html/browser.md)
-    * [Introduction](Chapter2/c2.md)
+    * [HTML](html/html.md)
     * [Introduction](Chapter2/c3.md)
     * [Introduction](Chapter2/c4.md)
 * 其他
