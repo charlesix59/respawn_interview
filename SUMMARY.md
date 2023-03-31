@@ -18,8 +18,8 @@
     * [浮动](css/css_float.md)
     * [弹性布局](css/css_flex.md)
 * JS
-    * JS基础
-    * 函数
+    * [JS基础](js/js_basis.md)
+    * [函数](js/js_function.md)
     * 作用域
     * 原型
     * 同步与异步
