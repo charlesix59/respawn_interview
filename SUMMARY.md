@@ -16,7 +16,7 @@
     * [选择器](css/css_selector.md)
     * [盒模型](css/css_box.md)
     * [浮动](css/css_float.md)
-    * 弹性布局
+    * [弹性布局](css/css_flex.md)
 * JS
     * JS基础
     * 函数
@@ -24,7 +24,6 @@
     * 原型
     * 同步与异步
     * 模块化
-    * 高级函数
     * 设计模式
 * 其他
     * [加密算法](other/crypto.md)
