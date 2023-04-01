@@ -20,8 +20,8 @@
 * JS
     * [JS基础](js/js_basis.md)
     * [函数](js/js_function.md)
-    * 作用域
-    * 原型
+    * [作用域与上下文](js/js_scope.md)
+    * [原型](js/js_prototype.md)
     * 同步与异步
     * 模块化
     * 设计模式
