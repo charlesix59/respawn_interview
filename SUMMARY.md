@@ -22,7 +22,7 @@
     * [函数](js/js_function.md)
     * [作用域与上下文](js/js_scope.md)
     * [原型](js/js_prototype.md)
-    * 同步与异步
+    * [同步与异步](js/sync_and_async.md)
     * 模块化
     * 设计模式
 * 其他
