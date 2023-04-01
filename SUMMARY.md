@@ -24,7 +24,7 @@
     * [原型](js/js_prototype.md)
     * [同步与异步](js/sync_and_async.md)
     * [模块化](js/js_module.md)
-    * 设计模式
+    * [设计模式](js/design_pattern.md)
 * 其他
     * [加密算法](other/crypto.md)
 
