@@ -15,3 +15,8 @@
 respawn是游戏中复活的意思，比如我非常喜欢的游戏APEX，制作方的名字就叫`respawn`，在这款游戏中
 ，当你被敌人消灭，你的队友依然有将你`respawn`的机会，所以，我希望经历过暑期实习招聘的失败之后，
 能够 respawn and try again
+
+## 阅读本书
+1. 您可以简单的clone这个仓库然后在本地观看（如果您有gitbook可以运行`gitbook serve`命令）
+2. 您可以直接点开对应的标签观看
+3. （推荐）在线观看地址：https://charles-organization.gitbook.io/respawn_interview/
