@@ -23,7 +23,7 @@
     * [作用域与上下文](js/js_scope.md)
     * [原型](js/js_prototype.md)
     * [同步与异步](js/sync_and_async.md)
-    * 模块化
+    * [模块化](js/js_module.md)
     * 设计模式
 * 其他
     * [加密算法](other/crypto.md)
