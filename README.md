@@ -20,3 +20,6 @@ respawn是游戏中复活的意思，比如我非常喜欢的游戏APEX，制作
 1. 您可以简单的clone这个仓库然后在本地观看（如果您有gitbook可以运行`gitbook serve`命令）
 2. 您可以直接点开对应的标签观看
 3. （推荐）在线观看地址：https://charles-organization.gitbook.io/respawn_interview/
+
+## 贡献与纠错
+如果本书中有任何问题，您可以在issue中提出，或向我提出分支合并申请
