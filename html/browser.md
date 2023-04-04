@@ -18,3 +18,10 @@
 | Safari  | webKit  | JavaScriptCore |
 | Opera   | Blink   | CaraKan        |
 | Edge    | Blink   | V8             |
+
+## 浏览器缓存
+```js
+// todo
+```
+
+## 识别用户的方式

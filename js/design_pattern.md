@@ -129,3 +129,5 @@ eventEmitter.emit('article2', 'Javascript 观察者模式');
 // 用户3订阅了: Javascript 发布-订阅模式
 // 用户4订阅了: Javascript 观察者模式 
 ```
+
+## 观察者模式
