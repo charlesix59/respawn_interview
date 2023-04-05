@@ -181,6 +181,64 @@ indexedDB 是一个基于JavaScript的面向对象的数据库。
 #### 写入数据
 键值对的形式写入
 ## 识别用户的方式
+因为HTTP是无状态协议，所以我们需要一种方法来验证请求者的身份
+
+当然，最简单的方法是每次都上传用户名和密码，但这是这增加了大量重复的代码，编码与维护都相当的困难
+### Cookie
+前面我们已经讲到了浏览器如何操作Cookie，现在我们将阐述如何使用Cookie鉴别身份
+
+Cookie可以由服务器生成，发送并储存在浏览器中。当浏览器向服务器发起HTTP请求时，**未过期**的Cookie将会
+**自动**添加到请求头中。
+
+#### Cookie跨域
+Cookie在跨域的HTTP请求中将会被禁用（关于跨域的HTTP请求见http章）
+
+想要给后端传递cookie需要使用withCredentials属性，设置withCredentials为true
+
 ```js
-//todo
+var xhr = new XMLHttpRequest()
+xhr.withCredentials = true
 ```
+
+如果依然收不到Cookie，可能还需要在set-cookie时将cookie的sameSite设置为none；
+又由于将sameSite设置为none时，也需要将Secure设置上，所以请求需要基于https
+
+#### Cookie的缺点
+不要用Cookie储存敏感数据，比如密码
+### Session
+使用Cookie储存信息时，每次都需要传递比较多的数据，这无疑会加重服务器的负担。
+为了减轻服务器的和网络的压力，Session出现了
+
+Session机制是一种服务器端的机制，服务器使用一种类似于散列表的结构（也可能就是使用散列表）来保存信息。
+
+Session将用户交互信息保存在了服务器端，同一个客户和服务端交互时只要传回一个ID，
+这个ID是客户端第一次访问服务器的时候生成的，而且每个客户端是唯一的。
+这样就实现了一个ID就能在服务器取得所有的用户交互信息。
+
+一般情况下客户端session的ID都是通过Cookie的方式与服务器交互的
+
+#### Session生命周期
+Session在以下情况会被删除失效：
+1. Session超时：时间服务器在设置的Session超时的最大时间内没有收到该Session所对应客户端的请求 
+2. 程序调用方法主动销毁session 
+3. 服务器关闭或服务停止
+
+### Token
+
+JSON Web Token（JWT）定义了以一种紧凑的、自包含的 JSON 对象在各方之间安全传输信息的方式。
+该信息含有数字签名，可以被验证和信任。
+
+#### Token的工作方式
+1. 前端发送账号密码到服务器
+2. 服务器验证账号密码
+3. 验证通过后将用户信息加密生成的token字符串发送到前端
+4. 前端收到后将token存入localStorage或者SessionStorage
+5. 前端再次发送请求时将token返回服务器
+6. 服务器解密token并与用户信息的明文比较，若通过则返回用户请求的信息
+
+#### Token的组成成分
+JWT 的三个组成部分，从前到后分别是 Header、Payload、Signature
+
+Payload部分才是真正的用户信息，它是用户信息经过加密之后生成的字符串
+
+Header和Signature是安全性相关的部分，只是为了保证Token的安全性
