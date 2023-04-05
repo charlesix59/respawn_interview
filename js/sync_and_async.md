@@ -67,7 +67,6 @@ Promise的状态指的是实例对象中的`PromiseState`对象
 成功和失败都会有一个结果数据
 
 - 成功：value
-
 - 失败：reason
 
 
@@ -76,7 +75,6 @@ Promise的状态指的是实例对象中的`PromiseState`对象
 实例对象中的另一个值`PromiseResult`，保存异步任务成功/失败的结果，值为
 
 - 成功 resolve
-
 - 失败 reject
 
 
@@ -446,3 +444,6 @@ MicroTask Queue 与 MacroTask Queue 类似，也是一个有序列表。不同�
 ### 两者的关系
 
 ![](https://pic1.zhimg.com/80/v2-a24e582fda37065755f10bd4dc5a3dc0_hd.jpg)
+
+首先整个同步代码是作为一个宏任务先开始执行的，等执行完成之后将继续执行微任务队列中的全部任务，
+之后再执行一个宏任务->全部微任务，如此循环
