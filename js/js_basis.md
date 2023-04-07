@@ -13,6 +13,33 @@ js 一共有五种基本数据类型，分别是 **Undefined**、**Null**、**Bo
 - 栈区内存由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。 
 - 堆区内存一般由程序员分配释放，若程序员不释放，程序结束时可能由垃圾回收机制回收。
 
+## 保留字
+### ES6 中的关键字
+
+break、case、catch、class、const、continue、debugger、default (en-US)、delete 、do 、else
+export、extends、finally、for、function、if、import、in、instanceof、new、return、super
+switch、this、throw、try、typeof、var、void、while、with、yield
+
+### 未来保留关键字
+在 ECMAScript 规格中，这些关键字被当成关键字保留。目前它们没有特殊功能，但是在未来某个时间可能会加上。
+所以这些关键字不能当成标识符使用。这些关键字在严格模式和非严格模式中均不能使用。
+
+enum
+
+### 严格模式中的保留关键字
+
+implements、interface、let、package、private、protected、public、static
+
+### 模块代码中的保留关键字
+
+await
+
+### 之前标准中的保留关键字
+abstract、boolean、byte、char、double、final、float、goto、int、long、native、short
+synchronized、transient、volatile
+
+另外，字面量 null、true和false同样不能被当成标识使用。
+
 ## 内置对象
 > 来自Front-End-Interview-Notebook
 
@@ -60,3 +87,45 @@ js 一共有五种基本数据类型，分别是 **Undefined**、**Null**、**Bo
 14. 其他
 
     例如 arguments
+
+
+## 全局函数
+
+decodeURI()、decodeURIcomponent()、 encodeURI、encodeURIcomponent()、escape()、eval()、
+isFinite()、isNAN()、Number()、parseFloat()、parseInt()、String()、unescape()
+
+## 运算符
+### 比较
+使用===时，null、undefined、0和false不相等
+### 运算
+-- 运算符表示先取值进行运算，运算结束后再自减
++"2" = 2，因为一元运算符 + 会触发隐式类型转化，将"2"转化为2
+### 逻辑
+&& 运算，如果前面值为true,则结果为后面的值。如果前面值为false,则值为前值.
+|| 运算，如果前面值为true,则结果为前面的值,如果前面的值为false,则结果为后面的值。
+
+### 运算符优先级从高到低排序
+
+| 运算符                                | 描述                         |
+|------------------------------------|----------------------------|
+| . [] ()                            | 字段访问、数组下标、函数调用以及表达式分组      |
+| ++ -- - ~ ! delete new typeof void | 一元运算符、返回数据类型、对象创建、未定义值     |
+| * / %                              | 乘法、除法、取模                   |
+| + - +                              | 加法、减法、字符串连接                |
+| << >> >>>                          | 移位                         |
+| < <= > >= instanceof               | 小于、小于等于、大于、大于等于、instanceof |
+| == != === !==                      | 等于、不等于、严格相等、非严格相等          |
+| &                                  | 按位与                        |
+| ^                                  | 按位异或                       |
+| &#124;                             | 按位或                        |
+| &&                                 | 逻辑与                        |
+| &#124;&#124;                       | 逻辑或                        |
+| ?:                                 | 条件                         |
+| = oP=                              | 赋值、运算赋值                    |
+| ,                                  | 多重求值                       |
+
+## 常用方法
+
+### 数组方法
+
+### Math函数方法
