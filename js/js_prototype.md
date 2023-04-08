@@ -42,3 +42,45 @@ var person = new Person('person')
 - 一切的函数对象（包括 Object 对象），都是继承自 Function 对象 
 - Object 对象直接继承自 Function 对象 
 - Function对象的__proto__会指向自己的原型对象，最终还是继承自Object对象
+
+### instanceof
+instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上
+
+使用如下：
+
+```js
+object instanceof constructor
+```
+
+object为实例对象，constructor为构造函数
+
+构造函数通过new可以实例对象，instanceof 能判断这个对象是否是之前那个构造函数生成的对象
+
+### instanceof的实现
+
+```js
+/**
+ * 判断对象是否在原型链上
+ * @param left 目标对象
+ * @param right 构造函数
+ * @return {boolean} 是否在原型链上
+ */
+function myInstanceof(left, right) {
+    // 如果left不是对象则一定不在原型链上
+    if (typeof left != "object" || left === null) {
+        return false
+    }
+
+    let proto = Object.getPrototypeOf(left)
+
+    while (true) {
+        if (proto == null) {
+            return false
+        }
+        if (proto === right.prototype) {
+            return true
+        }
+        proto = Object.getPrototypeOf(proto)
+    }
+}
+```
