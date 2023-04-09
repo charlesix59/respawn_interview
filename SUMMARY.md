@@ -23,9 +23,11 @@
     * [作用域](js/js_scope.md)
     * [上下文](js/js_this.md)
     * [原型](js/js_prototype.md)
+    * [面向对象](js/js_oop.md)
     * [同步与异步](js/sync_and_async.md)
     * [事件](js/js_event.md)
     * [DOM与BOM](js/dom_and_bom.md)
+    * [网页优化](js/web_optimize.md)
     * [模块化](js/js_module.md)
     * [设计模式](js/design_pattern.md)
 * 其他
