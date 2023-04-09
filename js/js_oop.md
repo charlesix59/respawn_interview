@@ -210,3 +210,31 @@ GitHubUser.prototype.readArticle = function () {
     console.log('Read article');
 }
 ```
+## Class
+在ES6中出现了class、extend等关键字，可以帮助我们轻松地实现面向对象编程。
+但是本质上这些关键字不过是**函数式编程的语法糖**。当我们使用babel等工具进行转换时，
+会发现class关键字的继承会被转换成上文中的**寄生组合式继承**。
+
+我们还是来写一下类式继承吧：
+```js
+class User {
+    class User{
+    name = "";
+    constructor(name) {
+        this.name = name;
+    }
+    sayHello = function (){
+        console.log("hello");
+    }
+}
+
+class GitHubUser extends User{
+    password="";
+    constructor(name,password) {
+        super(name);
+        password="123456";
+    }
+}
+```
+
+会发现实现地非常完美

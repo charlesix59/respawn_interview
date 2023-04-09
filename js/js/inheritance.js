@@ -50,22 +50,22 @@
 // // 继承
 // GitHubUser.prototype = Object.create(User)
 
-let User={
-    name:"name",
-}
-// 子类
-function GitHubUser(){
-    let o = Object.create(User)
-    o.__proto__.sayHi = function (){
-        console.log("Hi");
-    }
-    return o;
-}
-
-let Charles59 = new GitHubUser()
-
-console.log(Charles59.name) //>> User
-Charles59.sayHi()
+// let User={
+//     name:"name",
+// }
+// // 子类
+// function GitHubUser(){
+//     let o = Object.create(User)
+//     o.__proto__.sayHi = function (){
+//         console.log("Hi");
+//     }
+//     return o;
+// }
+//
+// let Charles59 = new GitHubUser()
+//
+// console.log(Charles59.name) //>> User
+// Charles59.sayHi()
 
 //寄生组合式继承的核心方法
 // function inherit(child, parent) {
@@ -101,7 +101,27 @@ Charles59.sayHi()
 //     console.log('Read article');
 // }
 //
-// const user1 = new GitHubUser("charles", "123456");
-// console.log(user1);
-// user1.sayHello()
+
 // user1.readArticle()
+
+class User{
+    name = "";
+    constructor(name) {
+        this.name = name;
+    }
+    sayHello = function (){
+        console.log("hello");
+    }
+}
+
+class GitHubUser extends User{
+    password="";
+    constructor(name,password) {
+        super(name);
+        password="123456";
+    }
+}
+
+const user1 = new GitHubUser("charles", "123456");
+console.log(user1);
+user1.sayHello()
