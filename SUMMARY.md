@@ -27,7 +27,9 @@
     * [同步与异步](js/sync_and_async.md)
     * [事件](js/js_event.md)
     * [DOM与BOM](js/dom_and_bom.md)
+    * [v8引擎](js/v8engine.md)
     * [网页优化](js/web_optimize.md)
+    * [安全]()
     * [模块化](js/js_module.md)
     * [设计模式](js/design_pattern.md)
 * 其他
