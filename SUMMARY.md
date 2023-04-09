@@ -29,7 +29,7 @@
     * [DOM与BOM](js/dom_and_bom.md)
     * [v8引擎](js/v8engine.md)
     * [网页优化](js/web_optimize.md)
-    * [安全]()
+    * [安全](js/web_safe.md)
     * [模块化](js/js_module.md)
     * [设计模式](js/design_pattern.md)
 * 其他
