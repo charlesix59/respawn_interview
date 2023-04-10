@@ -44,9 +44,7 @@ btn.onclick = fun;
 - 绑定速度快
 
   DOM0级事件具有很好的跨浏览器优势，会以最快的速度绑定，但由于绑定速度太快，可能页面还未完全加载出来，以至于事件可能无法正常运行
-
 - 只支持冒泡，不支持捕获
-
 - 同一个类型的事件只能绑定一次
 
   ```html
@@ -121,3 +119,20 @@ attachEvent(eventType, handler)
 ```js
 detachEvent(eventType, handler)
 ```
+
+## 阻止冒泡
+event.stopPropagation() 或者 ie 下的方法 event.cancelBubble = true;
+
+## 事件代理
+事件代理就是将一个或者一组元素的事件委托到它的父层或者更外层元素上，
+并通过事件冒泡机制将事件交给外层元素绑定的方法处理
+
+适合事件委托的事件有：`click，mousedown，mouseup，keydown，keyup，keypress`
+
+事件委托存在两大优点：
+- 减少整个页面所需的内存，提升整体性能
+- 动态绑定，减少重复工作
+
+局限性：
+- focus、blur 这些事件没有事件冒泡机制，所以无法进行委托绑定事件
+- mousemove、mouseout 这样的事件，虽然有事件冒泡，但是只能不断通过位置去计算定位，对性能消耗高，因此也是不适合于事件委托的
