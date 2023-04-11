@@ -71,3 +71,24 @@ Function.prototype.myApply = function (thisArg){
 }
 
 console.log(Math.max.myApply({"a":1},[1,2,3]))
+
+/**
+ * 实现bind方法
+ * @param {*} thisArg this的指向
+ * @param  {...any} arg 传入函数的参数
+ * @returns 返回this绑定为传入thisArg的一个函数
+ */
+Function.prototype.myBind = function(thisArg,...args){
+    const bindFunction = this;
+    // 二次传参
+    let funcForBind = function(...secondArgs){
+        let isNew = this instanceof funcForBind;
+        thisArg = isNew? this : Object(thisArg);
+        // 将两次传递的参数都作为目标函数的参数
+        return bindFunction.call(thisArg,...args,...secondArgs);
+    }
+
+    // 将返回函数的原型绑定到目标对象上
+    funcForBind.prototype = Object.create(bindFunction.prototype);
+    return funcForBind;
+}
