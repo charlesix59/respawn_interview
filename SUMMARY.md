@@ -19,6 +19,7 @@
     * [弹性布局](css/css_flex.md)
 * JS
     * [JS基础](js/js_basis.md)
+    * [对象](js/object.md)
     * [函数](js/js_function.md)
     * [作用域](js/js_scope.md)
     * [上下文](js/js_this.md)
