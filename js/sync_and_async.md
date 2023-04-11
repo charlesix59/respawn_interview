@@ -447,3 +447,55 @@ MicroTask Queue 与 MacroTask Queue 类似，也是一个有序列表。不同�
 
 首先整个同步代码是作为一个宏任务先开始执行的，等执行完成之后将继续执行微任务队列中的全部任务，
 之后再执行一个宏任务->全部微任务，如此循环
+
+## AJAX
+有人可能会疑惑，为啥我会在这里写ajax，但是它毕竟是Asynchronous Json And XML（异步的json与xml）嘛
+。同时，ajax也是一个macro task嘛，所以就仍在这里了。
+
+AJAX我觉得不用多做介绍了，他是一个在不刷新整个网页的情况下更新部分界面数据的技术。
+
+如果我们不适用jQuery或者Axios来实现一个ajax还是比较复杂的，我们需要这么做：
+
+```js
+const server = "www.example.com:8080/";
+
+/**
+ * 
+ * @param url 请求网址（除去服务器）
+ * @param method 请求方式
+ * @param data 要发送数据（Post可用）
+ * @return {Promise<unknown>} 返回一个promise对象
+ */
+function getJson(url,method="GET",data){
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        // 创建请求
+        xhr.open(method, server + url, true);
+
+        // 设置状态监听函数
+        xhr.onreadystatechange(e => {
+            if (e.readyState !== 4) {
+                return;
+            }
+            if (this.state === 200) {
+                resolve(e.response);
+            } else {
+                reject(e.statusText);
+            }
+        })
+
+        // 设置错误监听函数
+        xhr.onerror(e => {
+            reject(e.statusText);
+        })
+
+        // 设置请求信息
+        xhr.responseType = "json";
+        xhr.setRequestHeader("Accept", "Application/json");
+
+        // 发送请求
+        data = method.toUpperCase() === "GET" ? null : data;
+        xhr.send(data || null);
+    });
+}
+```
