@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双栏布局</title>
+    <style>
+        .container1{
+            /*如果BFC可能会导致两个元素不对齐*/
+            /*overflow: hidden;*/
+        }
+        .left1{
+            float: left;
+            width: 200px;
+
+            background-color: blue;
+            height: 200px;
+        }
+        .right1{
+            margin-left: 200px;
+
+            background-color: red;
+            height: 200px;
+        }
+
+        .container2{
+            display: flex;
+            height: 200px;
+        }
+        .left2{
+            width: 200px;
+
+            background-color: blue;
+        }
+        .right2{
+            flex-grow: 1;
+
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container1">
+        <div class="left1"></div>
+        <div class="right1">
+            <p style="color: aliceblue">
+                通过设置父元素为BFC，同时设置左侧元素为浮动，并设置右侧元素有左外边距使得两个元素互不倾轧
+            </p>
+        </div>
+    </div>
+    <br>
+    <div class="container2">
+        <div class="left2"></div>
+        <div class="right2">
+            <p style="color: aliceblue">
+                通过设置父元素为flex布局，同时设置左元素为固定大小，右元素伸展至整个剩余容器（推荐，代码少）
+            </p>
+        </div>
+    </div>
+</body>
+</html>
