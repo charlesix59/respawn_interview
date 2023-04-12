@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现水平垂直居中</title>
+    <style>
+        .father{
+            background-color: blue;
+            width: 500px;
+            height: 400px;
+        }
+        .son{
+            background-color: red;
+            width: 200px;
+            height: 100px;
+        }
+
+        /*方式1：定位+margin：auto*/
+        .center1-container{
+            position: relative;
+        }
+        .center1-context{
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            margin: auto;
+            position: absolute;
+        }
+
+        /*方式2：定位+设置位置+margin*/
+        .center2-container{
+            position: relative;
+        }
+        .center2-context{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /*只有确定子元素的宽高才可以用*/
+            margin-left: -100px;
+            margin-top: -50px;
+        }
+
+        /*方式3：定位+设置位置+translate*/
+        .center3-container{
+            position: relative;
+        }
+        .center3-context{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform:translate(-50%,-50%);
+        }
+
+        /*方式4：弹性布局或网格布局*/
+        .center4-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .center4-context{
+            /*啥都不做*/
+        }
+    </style>
+</head>
+<body>
+    <div class="father center1-container">
+        <div class="son center1-context">
+            <p style="color: aliceblue">父元素相对定位，子元素绝对定位，四个方向的定位设置为0，margin为auto</p>
+        </div>
+    </div>
+    <br>
+    <div class="father center2-container">
+        <div class="son center2-context">
+            <p style="color: aliceblue">父元素相对定位，子元素绝对定位，top和left设置为50%（相对父元素的宽高），margin的top与left设置为自负的身高、宽的一半</p>
+        </div>
+    </div>
+    <br>
+    <div class="father center3-container">
+        <div class="son center3-context">
+            <p style="color: aliceblue">父元素相对定位，子元素绝对定位，top和left设置为-50%，通过translate函数实现向左上移动半个身位</p>
+        </div>
+    </div>
+    <br>
+    <div class="father center4-container">
+        <div class="son center4-context">
+            <p style="color: aliceblue">父元素为弹性布局，设置主轴元素居中，交叉轴元素居中（代码简单，推荐）</p>
+        </div>
+    </div>
+    <br>
+</body>
+</html>
