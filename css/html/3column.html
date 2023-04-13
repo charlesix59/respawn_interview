@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三栏布局</title>
+    <style>
+        .div0{
+            height: 100px;
+        }
+        .div1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .div2{
+            color: aliceblue;
+            height: 100px;
+            background-color: blue;
+        }
+        .div3{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+
+        .left1{
+            position: absolute;
+        }
+        .right1{
+            top: 0;
+            right: 0;
+            position: absolute;
+        }
+        .mid1{
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+
+        .container1{
+            display: flex;
+        }
+        .mid2{
+            flex-grow: 1;
+        }
+
+        .left3{
+            float: left;
+        }
+        .right3{
+            float: right;
+        }
+        .mid3{
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+
+        .container4{
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+        .left4{
+            position: relative;
+            float: left;
+            left: -100px;
+            margin-top: -100px;
+        }
+        .mid4{
+            float: left;
+            width: 100%;
+        }
+        .right4{
+            position: relative;
+            float: right;
+            margin-right: -100px;
+            margin-top: -100px;
+        }
+
+        .wrapper {
+            float: left;
+            width: 100%;
+            height: 100px;
+        }
+
+        .left5 {
+            float: left;
+            width: 100px;
+            height: 100px;
+        }
+
+        .right5 {
+            float: right;
+            margin-left: -100px;
+
+            width: 100px;
+            height: 100px;
+        }
+
+        .mid5 {
+            margin-left: 100px;
+            margin-right: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="div0">
+            <div class="div1 left1"></div>
+            <div class="div2 mid1">通过将两侧设为绝对布局，中间设置margin来实现三栏布局(这种方法对不齐，不推荐！)</div>
+            <div class="div3 right1"></div>
+        </div>
+        <br>
+        <div class="div0 container1">
+            <div class="div1"></div>
+            <div class="div2 mid2">通过flex将父容器设置为flex，中间元素占用全部剩余空间（推荐！）</div>
+            <div class="div3"></div>
+        </div>
+        <br>
+        <div class="div0">
+            <div class="div1 left3"></div>
+            <div class="div3 right3"></div>
+            <div class="div2 mid3">通过将两侧设为浮动，中间设置margin来实现三栏布局(中间元素必须写在最后)</div>
+        </div>
+        <br>
+        <div class="div0 container4">
+            <div class="div2 mid4">
+                圣杯布局：首先将父元素设置左右内边距<br>
+                三个元素均设置float属性，中间元素写在最前面，并将宽度设置为父元素的宽度，将左右元素挤到下面；<br>
+                然后左右元素分别设置float：left与float：right，并设置这两个元素的margin为负值，此时左右元素浮在中间元素下方的左右<br>
+                然后通过设置margin-top: -100;来让两个元素浮上来
+            </div>
+            <div class="div1 left4"></div>
+            <div class="div3 right4"></div>
+        </div>
+        <br>
+        <div class="div0">
+            <div class="div1 left5"></div>
+            <div class="div3 right5"></div>
+            <div class="div2 mid5">
+                <div class="wrapper">
+                    双飞翼布局：也是利用float与margin负值实现，与圣杯布局不同的是，双飞翼布局的左右间隔是中间元素的margin隔开的，而非父元素的padding
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
