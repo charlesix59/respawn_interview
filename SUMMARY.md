@@ -14,9 +14,10 @@
 * CSS
     * [CSS基本属性](css/css_basis.md)
     * [选择器](css/css_selector.md)
-    * [盒模型](css/css_box.md)
-    * [浮动](css/css_float.md)
-    * [弹性布局](css/css_flex.md)
+    * layout
+      * [盒模型](css/css_box.md)
+      * [浮动](css/css_float.md)
+      * [弹性布局](css/css_flex.md)
 * JS
     * [JS基础](js/js_basis.md)
     * [对象](js/object.md)

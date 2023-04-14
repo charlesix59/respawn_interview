@@ -13,9 +13,10 @@ IE盒模型：属性width，height包含content、border和padding，指的是co
 ## IFC
 IFC（inline Formatting Context）叫做“行级格式化上下”
 布局规则如下：
-1. 内部的盒子会在水平方向，一个个地放置；
-2. IFC的高度，由里面最高盒子的高度决定；
-3. 当一行不够放置的时候会自动切换到下一行；
+1. 内部的盒子会在水平方向，一个个地放置
+2. IFC的高度，由里面最高盒子的高度决定
+3. 当一行不够放置的时候会自动切换到下一行
+
 ## BFC
 BFC（Block Formatting Context）叫做“块级格式化上下文"
 布局规则如下：
