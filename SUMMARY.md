@@ -18,6 +18,9 @@
       * [盒模型](css/css_box.md)
       * [浮动](css/css_float.md)
       * [弹性布局](css/css_flex.md)
+      * [常用的布局](css/common_layout.md)
+    * display
+      * [动画](css/css_animation.md)
 * JS
     * [JS基础](js/js_basis.md)
     * [对象](js/object.md)
