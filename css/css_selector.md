@@ -94,6 +94,7 @@ a[title|="link"]{
 | [:focus](https://www.runoob.com/cssref/sel-focus.html)                          | input:focus           | 选择元素输入后具有焦点                  |
 | [:first-child](https://www.runoob.com/cssref/sel-firstchild.html)               | p:first-child         | 选择器匹配属于任意元素的第一个子元素的 `<p> `元素 |
 | [:lang(*language*)](https://www.runoob.com/cssref/sel-lang.html)                | p:lang(it)            | 为`<p>`元素的lang属性选择一个开始值       |
+
 ### 伪元素
 | 选择器                                                                 | 示例             | 示例说明             |
 |---------------------------------------------------------------------|----------------|------------------|
@@ -107,3 +108,5 @@ a[title|="link"]{
 /*选择所有*/
 *{}
 ```
+
+## 选择器优先级

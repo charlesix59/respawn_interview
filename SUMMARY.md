@@ -20,6 +20,7 @@
       * [弹性布局](css/css_flex.md)
       * [常用的布局](css/common_layout.md)
     * display
+      * [伪类与伪元素](css/)
       * [动画](css/css_animation.md)
 * JS
     * [JS基础](js/js_basis.md)
@@ -32,6 +33,7 @@
     * [同步与异步](js/sync_and_async.md)
     * [事件](js/js_event.md)
     * [DOM与BOM](js/dom_and_bom.md)
+    * [ES6+新特性](js/es6_further_features.md)
     * [v8引擎](js/v8engine.md)
     * [网页优化](js/web_optimize.md)
     * [安全](js/web_safe.md)
