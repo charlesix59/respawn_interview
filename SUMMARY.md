@@ -20,7 +20,7 @@
       * [弹性布局](css/css_flex.md)
       * [常用的布局](css/common_layout.md)
     * display
-      * [伪类与伪元素](css/)
+      * [伪类与伪元素](css/pseudo.md)
       * [动画](css/css_animation.md)
 * JS
     * [JS基础](js/js_basis.md)
