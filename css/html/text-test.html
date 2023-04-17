@@ -7,6 +7,12 @@
         .text-container{
             font-variant: all-small-caps;
         }
+        .text-container2{
+            height: 100px;
+            width: 100px;
+            background-color: antiquewhite;
+            /*text-align: center;*/
+        }
     </style>
 </head>
 <body>
@@ -36,5 +42,32 @@
         <p style="font-weight: 800">800</p>
         <p style="font-weight: 900">900</p>
     </div>
+    <div class="text-container2" style="word-break: normal">this test text and there are a longlonglonglonglonglonglong word</div>
+  <br>
+    <div class="text-container2" style="word-break:break-word">this test text and there are a longlonglonglonglonglonglong word</div>
+  <br>
+    <div class="text-container2" style="word-break: break-all">this test text and there are a longlonglonglonglonglonglong word</div>
+        <br>
+        <br>
+    <div class="text-container2" style="overflow: visible">
+        this test text and there are a longlonglonglonglonglonglong word and high text
+    </div>
+  <br>
+  <br>
+  <div class="text-container2" style="overflow: hidden">
+      this test text and there are a longlonglonglonglonglonglong word and high text
+  </div>
+  <br>
+  <br>
+  <div class="text-container2" style="overflow: scroll">
+      this test text and there are a longlonglonglonglonglonglong word and high text
+  </div>
+  <br>
+  <br>
+  <div class="text-container2" style="overflow: clip">
+      this test text and there are a longlonglonglonglonglonglong word and high text
+  </div>
+  <br>
+  <br>
 </body>
 </html>
