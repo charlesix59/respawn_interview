@@ -22,6 +22,7 @@
     * display
       * [伪类与伪元素](css/pseudo.md)
       * [动画](css/css_animation.md)
+      * [字体](css/css_text.md)
 * JS
     * [JS基础](js/js_basis.md)
     * [对象](js/object.md)
