@@ -180,8 +180,51 @@ function throttle(func,wait,immediate){
 
 如果中途上传中断过，下次上传的时候根据当前临时文件大小，作为在客户端读取文件的偏移量，从此位置继续读取文件数据块，上传到服务器从此偏移量继续写入文件即可
 
+> 摘自 https://github.com/febobo/web-interview
+
 ```js
-// todo：太复杂了我不想给代码，或许哪天有心情吧
+function md5(context){
+    // do something
+    return "some md5 string"
+}
+function resume_upload(){
+    let file = null;
+    let slice = null;
+    // 读取文件内容
+    const input = document.querySelector('input');
+    input.addEventListener('change', function() {
+        file = this.files[0];
+    });
+    // md5生成唯一标识
+    const md5code = md5(file);
+    // 文件分片
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+    reader.addEventListener("load", function(e) {
+        //每10M切割一段,这里只做一个切割演示，实际切割需要循环切割，
+        slice = e.target.result.slice(0, 10 * 1024 * 1024);
+    });
+
+    // 分片发送
+    const formData = new FormData();
+    formData.append('0', slice);
+    //这里是有一个坑的，部分设备无法获取文件名称，和文件类型，这个在最后给出解决方案
+    formData.append('filename', file.filename);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', function() {
+        //xhr.responseText
+    });
+    xhr.open('POST', '');
+    xhr.send(formData);
+    xhr.addEventListener('progress', updateProgress);
+    xhr.upload.addEventListener('progress', updateProgress);
+
+    function updateProgress(event) {
+        if (event.lengthComputable) {
+            //进度条
+        }
+    }
+}
 ```
 
 ## 媒体优化
@@ -288,11 +331,30 @@ observer.observe(target);
 最常用的方式是使用 js 中的 image 对象，通过为 image 对象来设置 scr 属性，来实现图片的预加载。
 
 ### Base64
-```js
-// todo：好累啊，我要摆烂！
-```
+Base64 是一种编码方式，可以讲图片、ttf文件等转化为字符串。它的优缺点如下：
+
+优点：
+- 可以缓存，减少HTTP请求的次数
+
+缺点：
+- 会增加大约1/3的文件体积
+- 无法直接缓存，比直接缓存图片的效果要差
+- ie8之前的浏览器不支持
+
+应用：
+- 可以用来缓存5kb左右的小图标（可以通过webpack等打包工具配置）
+  - 相比大图，小图增加的体积十分有限
+  - 大量的小图片会启用多次http请求，十分浪费资源，而使用base64只需要传输一次
+- 某些不支持外部资源的服务，只需要加载少量资源，可以使用
 
 ### 雪碧(sprite)图
-```js
-// todo：再说吧再说吧我洗澡去了
-```
+雪碧图与Base64一样，都是为了优化小图片的加载。其原理是将界面使用的许多小图片都整合到一张大图中去，
+然后利用CSS的`background-image`，`background-repeat`，`background-position`的组合进行背景定位。
+
+优点：
+- 减少HTTP请求次数
+- 更加容易压缩，减小图片的大小
+- 方便更改图片风格
+
+缺点：
+- 如果图片的布局发生变化可能需要进行大量的更改
