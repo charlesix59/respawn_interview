@@ -17,10 +17,12 @@ let o2 = new Object;
 // 使用字面量声明的属性会自动转化为字符串
 let person2 = {
     "name":"charles"
+    // 属性名会自动转换为字符串
+    age:"test"
 };
 ```
 
-### 访问对象的方式：
+### 访问对象的方式
 
 ```js
 // 点表示法
@@ -191,7 +193,8 @@ length并不是制度的，如果设置length小于数组长度，则会移除�
 
 ### 检测数组
 
-我们可以使用`arr instanceof Array`检测数组，但是如果网页中存在多个全局环境并且其Array狗赞函数不同，则这个方法可能失效。我们可以使用`Array.isArray()`方法检测某个值是不是数组
+我们可以使用`arr instanceof Array`检测数组，但是如果网页中存在多个全局环境并且其Array构造函数不同，则这个方法可能失效。
+我们可以使用`Array.isArray()`方法检测某个值是不是数组
 
 ### 转化方法
 
@@ -227,9 +230,12 @@ push+shift或者pop+unshift都可以实现队列式的操作
 
 sort默认会比较字符串，我们也可以传入一个比较函数作为参数，指定sort的比较规则。
 
-比较函数接受两个参数，**如果第一个参数应该位于第一个前面，则返回负数，如果两个参数相等，则返回0，如果第一个参数位于第二个之后则返回一个正数**。sort函数接受比较函数后会自动传参。
+比较函数接受两个参数，**如果第一个参数应该位于第一个前面，则返回负数，如果两个参数相等，则返回0，如果第一个参数位于第二个之后则返回一个正数**。
+sort函数接受比较函数后会自动传参。
 
 如果要比较数值对象，可以直接返回两参相减的结果。
+
+如果只想反转数组，`reverse`方法会更快
 
 ### 操作方法
 
@@ -247,7 +253,7 @@ console.log(arr2) //>> [1,2]
 - 传入一个参数：索引从参数到结尾的项删除
 - 传入两个参数：索引从参数一到参数二的项删除
 - 传入三个参数以上的参数：索引从参数一到参数二的项删除，并从删除的位置插入参数三及之后的值
-- 返回被阐述的项
+- 返回被删除的项
 
 ### 位置方法
 
@@ -266,9 +272,12 @@ console.log(arr2) //>> [1,2]
 
 ### 递归方法
 
-`reduce()`方法，会从左往右遍历对象，并调用函数，接受两个参数，第一个为一个函数，*这个函数*接受四个参数：**前一个值，当前值，项的索引，数组对象**，另一个参数为初始的值。
+`reduce()`方法，会从左往右遍历数组，并调用函数，接受两个参数，第一个为一个函数，
+*这个函数*接受四个参数：**前一个值，当前值，项的索引，数组对象**，另一个参数为初始的值。
 
 对于传入的函数，reduce会自动将其返回值作为下次调用的一个参数。第一次调用这个函数发生在数组的第二项，函数的第一个参数为其数组的第一项。
+
+`reduceRight()`方法，会从数组最后一项开始，逐个遍历直到第一项，其他行为与`reduce`方法相同
 
 ## Date
 
@@ -314,6 +323,53 @@ Date类型还有一些专门用于将日期格式化为字符串的方法，如�
 - toUTCString()——以特定的格式显示UTC日期
 
 ### 日期/时间 组件方法
+| 方法                                  | 说明                                                                                  |
+|-------------------------------------|-------------------------------------------------------------------------------------|
+| Date.prototype.getDate()            | 根据本地时间，返回一个指定的 Date 对象为一个月中的哪一日（1-31）                                               |
+| Date.prototype.getDay()             | 根据本地时间，返回一个指定的 Date 对象是在一周中的第几天（0-6），0 表示星期天                                        |
+| Date.prototype.getFullYear()        | 根据本地时间，返回一个指定的 Date 对象的完整年份（四位数年份）                                                  |
+| Date.prototype.getHours()           | 根据本地时间，返回一个指定的 Date 对象的小时（0–23）                                                     |
+| Date.prototype.getMilliseconds()    | 根据本地时间，返回一个指定的 Date 对象的毫秒数（0–999）                                                   |
+| Date.prototype.getMinutes()         | 根据本地时间，返回一个指定的 Date 对象的分钟数（0–59）                                                    |
+| Date.prototype.getMonth()           | 根据本地时间，返回一个指定的 Date 对象的月份（0–11），0 表示一年中的第一月。                                        |
+| Date.prototype.getSeconds()         | 根据本地时间，返回一个指定的 Date 对象的秒数（0–59）                                                     |
+| Date.prototype.getTime()            | 返回一个数值，表示从 1970 年 1 月 1 日 0 时 0 分 0 秒（UTC，即协调世界时）距离该 Date 对象所代表时间的毫秒数。（更早的时间会用负数表示） |
+| Date.prototype.getTimezoneOffset()  | 返回协调世界时（UTC）相对于当前时区的时间差值，单位为分钟                                                      |
+| Date.prototype.getUTCDate()         | 以协调世界时为标准，返回一个指定的 Date 对象为一个月中的哪一日（1-31）                                            |
+| Date.prototype.getUTCDay()          | 以协调世界时为标准，返回一个指定的 Date 对象是在一周中的第几天（0-6），0 表示星期天                                     |
+| Date.prototype.getUTCFullYear()     | 以协调世界时为标准，返回一个指定的 Date 对象的完整年份（四位数年份）。                                              |
+| Date.prototype.getUTCHours()        | 以协调世界时为标准，返回一个指定的 Date 对象的小时（0–23）                                                  |
+| Date.prototype.getUTCMilliseconds() | 以协调世界时为标准，返回一个指定的 Date 对象的毫秒数（0–999）                                                |
+| Date.prototype.getUTCMinutes()      | 以协调世界时为标准，返回一个指定的 Date 对象的分钟数（0–59）                                                 |
+| Date.prototype.getUTCMonth()        | 以协调世界时为标准，返回一个指定的 Date 对象的月份（0–11），0 表示一年中的第一月                                      |
+| Date.prototype.getUTCSeconds()      | 以协调世界时为标准，返回一个指定的 Date 对象的秒数（0–59）                                                  |
+| Date.prototype.getYear()            | 根据本地时间，返回一个指定的 Date 对象的相对年份（相对 1900 年，通常是 2 到 3 位数字）。请改用 getFullYear                |
+| Date.prototype.setDate()            | 根据本地时间，设置一个 Date 对象在所属月份中的天数                                                        |
+| Date.prototype.setFullYear()        | 根据本地时间，设置一个 Date 对象的完整年份（四位数年份）                                                     |
+| Date.prototype.setHours()           | 根据本地时间，设置一个 Date 对象的小时数。                                                            |
+| Date.prototype.setMilliseconds()    | 根据本地时间，设置一个 Date 对象的豪秒数。                                                            |
+| Date.prototype.setMinutes()         | 根据本地时间，设置一个 Date 对象的分钟数。                                                            |
+| Date.prototype.setMonth()           | 根据本地时间，设置一个 Date 对象的月份。                                                             |
+| Date.prototype.setSeconds()         | 根据本地时间，设置一个 Date 对象的秒数。                                                             |
+| Date.prototype.setTime()            | 用一个从 1970-1-1 00:00:00 UTC 计时的毫秒数来为一个 Date 对象设置时间。用负数来设置更早的时间。                      |
+| Date.prototype.setUTCDate()         | 以协调世界时为标准，设置一个 Date 对象在所属月份中的天数。                                                    |
+| Date.prototype.setUTCFullYear()     | 以协调世界时为标准，设置一个 Date 对象的完整年份（四位数年份）。                                                 |
+| Date.prototype.setUTCHours()        | 以协调世界时为标准，设置一个 Date 对象的小时数。                                                         |
+| Date.prototype.setUTCMilliseconds() | 以协调世界时为标准，设置一个 Date 对象的豪秒数。                                                         |
+| Date.prototype.setUTCMinutes()      | 以协调世界时为标准，设置一个 Date 对象的分钟数。                                                         |
+| Date.prototype.setUTCMonth()        | 以协调世界时为标准，设置一个 Date 对象的月份。                                                          |
+| Date.prototype.setUTCSeconds()      | 以协调世界时为标准，设置一个 Date 对象的秒数。                                                          |
+| Date.prototype.setYear()            | 根据本地时间，设置一个 Date 对象的相对年份（相对 1900 年，通常是 2 到 3 位数字）。请改用 setFullYear 。                 |
+| Date.prototype.toDateString()       | 以美式英语和人类易读的表述形式返回一个 Date 对象日期部分的字符串。                                                |
+| Date.prototype.toISOString()        | 将指定 Date 对象转换成 ISO 格式表述的字符串并返回。                                                     |
+| Date.prototype.toJSON()             | 返回指定 Date 对象调用 toISOString() 方法的返回值。在 JSON.stringify() 中使用。                         |
+| Date.prototype.toLocaleDateString() | 返回一个表述指定 Date 对象的日期部分字符串。该字符串格式因不同语言而不同。                                            |
+| Date.prototype.toLocaleString()     | 返回一个表述指定 Date 对象的字符串。该字符串格式因不同语言而不同。                                                |
+| Date.prototype.toLocaleTimeString() | 返回一个表述指定 Date 对象时间部分的的字符串。该字符串格式因不同语言而不同。                                           |
+| Date.prototype.toString()           | 返回一个字符串，表示该 Date 对象。覆盖了 Object.prototype.toString() 方法。                             |
+| Date.prototype.toTimeString()       | 以人类易读形式返回一个 Date 对象时间部分的字符串，该字符串以美式英语格式化。                                           |
+| Date.prototype.toUTCString()        | 使用 UTC 时区，把一个 Date 对象转换为一个字符串。                                                      |
+| Date.prototype.valueOf()            | 返回一个 Date 对象的原始值。覆盖了 Object.prototype.valueOf() 方法。                                 |
 
 ## RegExp类型
 
@@ -335,7 +391,7 @@ let exp2 = new RegExp("pattern","flags");
 
 需要注意的是，在字符串中的元素都需要**双重转义**，那些已经转义过的字符也是如此，比如\n需要写成”\\\\n“。
 
-在ES3中，字面量形式的正则表达式会共享一个RegExp实例，在ES5中，使用正则表达式字面量必须和直接调用构造函数一样，每次创建新的实例。
+在ES3中，字面量形式的正则表达式会共享一个RegExp实例，在ES5中，**使用正则表达式字面量必须和直接调用构造函数一样，每次创建新的实例**。
 
 ### RegExp的实例属性
 
@@ -384,7 +440,8 @@ function func1(){}
 const func2 = function(){}
 ```
 
-解析器所在对待函数声明与函数表达式的态度上并不相同，解析器会率先读取函数声明，并使其在执行任何代码之前可用（可访问），而函数表达式必须等待解析器执行到它所在的行才会被解释。
+解析器所在对待函数声明与函数表达式的态度上并不相同，解析器会率先读取函数声明，并使其在执行任何代码之前可用（可访问），
+而函数表达式必须等待解析器执行到它所在的行才会被解释。
 
 除此之外还有一种方法是使用Function构造函数
 
@@ -406,9 +463,10 @@ arguments在上文已经提到过，它包含着函数中的所有参数，其�
 
 this指向的是函数执行的函数对象。
 
-在ES中，函数还有另一个值：caller，这个值保存着调用当前函数的函数引用，如果是在全局作用域中调用当前函数，则caller的值为null。
+在ES5中，函数还有另一个值：caller，这个值保存着调用当前函数的函数引用，如果是在全局作用域中调用当前函数，则caller的值为null。
+你也可以使用`argument.callee.caller`来实现和调用`函数.caller`相同的效果
 
-需要注意的是，在严格模式下，访问arguments.caller和arguments.callee都会发生错误，其中arguments.caller的作用是防止与函数的calller属性弄混。
+需要注意的是，在严格模式下，访问arguments.caller和arguments.callee都会发生错误，其中arguments.caller的作用是防止与函数的caller属性弄混。
 
 ### 函数的属性和方法
 
@@ -424,9 +482,11 @@ ES5中还定义了一个方法：`bind()`。这个方法会创建一个函数实
 
 ## 基本包装类型
 
-ES还提供了3个特殊的引用类型：`Boolean`、`Number`和`String`。每当读取基本类型的值的时候，后台就会创建一个对应的基本包装类型的对象，当使用完之后就会把对象销毁，并返回基本类型的值。**这些操作是自动、透明的**。这也就是为什么我们可以为基本类型的值添加方法，不会报错却无法成功的原因。
+ES还提供了3个特殊的引用类型：`Boolean`、`Number`和`String`。每当读取基本类型的值的时候，后台就会创建一个对应的基本包装类型的对象，
+当使用完之后就会把对象销毁，并返回基本类型的值。**这些操作是自动、透明的**。这也就是为什么我们可以为基本类型的值添加方法，不会报错却无法成功的原因。
 
-我们也可以显式的调用Boolean、Number和String来创建基本的包装类型的对象，不过并不建议这样做，因为这样的变量不会自动转化，会让人分不清自己操作的数据的类型，并且一些比较操作也会也会出现意想不到的结果。
+我们也可以显式的调用Boolean、Number和String来创建基本的包装类型的对象，不过并不建议这样做，因为这样的变量不会自动转化，
+会让人分不清自己操作的数据的类型，并且一些比较操作也会也会出现意想不到的结果。
 
 Object构造函数也会像工厂函数一样，根据传入值的类型来返回相应的基本包装类的实例。
 
@@ -445,8 +505,8 @@ Number对象也重写了valueOf、toString和toLoacleString，第一个方法返
 除了以上方法之外，Number对象还提供了一些其他的将数值转化为字符串的方法
 
 - `toFixed(小数点后位数)`方法会按照指定的小数位数返回字符串表示，舍入方法为：**向上舍入**
-- `toExponential()`方法返回一直输表示法表示的数值的字符串形式
-- `toPrecision()`方法能返回固定大小的格式，也可能返回质数格式，具体看哪种格式最合适
+- `toExponential()`方法返回指数表示法表示的数值的字符串形式
+- `toPrecision()`方法能返回fixed格式，也可能返回exponential格式，具体看哪种格式最合适
 
 ### String
 
@@ -470,7 +530,7 @@ string类型的每一个实例中都会有一个length属性，表示字符串�
 
 #### trim方法
 
-创建一个字符串的副本，并删除前置与后缀的所有空格
+`trim()`，创建一个字符串的副本，并删除前置与后缀的所有空格
 
 #### 大小写转换方法
 - `toLowerCase()`
@@ -481,7 +541,8 @@ string类型的每一个实例中都会有一个length属性，表示字符串�
 #### 字符串的模式匹配方法
 - `match()`，接受一个正则表达式，与RegExp的exec方法相同
 - `search()`，接受一个正则表达式，返回字符串中第一个匹配项的索引；若未找到，则返回-1。并且search方法始终从前往后搜索。
-- `replace()`，第一个参数是一个正则表达式或字符串，如果是字符串则只替换第一个匹配到的，唯一的方法是使用正则表达式并提供g标志。第二个是一个字符串或是一个函数，如果第二个参数是字符串还可以使用一些特殊的字符序列将正则表达式操作得到的值插入到结果字符串中。
+- `replace()`，第一个参数是一个正则表达式或字符串，如果是字符串则只替换第一个匹配到的，唯一的方法是使用正则表达式并提供g标志。 
+   第二个是一个字符串或是一个函数，如果第二个参数是字符串还可以使用一些特殊的字符序列将正则表达式操作得到的值插入到结果字符串中。
 - `parseHTML()`，能够转义`>`、`<`、`&`、`"`四个字符
 
 #### localeCompare()方法
@@ -511,6 +572,8 @@ Global对象是透明的。
 
 Web浏览器将Global对象的一些功能通过window对象加以实现。
 
+具体功能见本章节 #内置对象 模块
+
 ## Math对象
 
 math对象保存数学公式和信息
@@ -537,6 +600,27 @@ math对象的一些常用属性如下：
 | ceil()  | 向上舍入 |
 | floor() | 向下舍入 |
 | round() | 四舍五入 |
+
+其他方法如下：
+
+| 方法               | 描述                                         |
+|------------------|--------------------------------------------|
+| abs(x)           | 返回 x 的绝对值。                                 |
+| acos(x)          | 返回 x 的反余弦值。                                |
+| asin(x)          | 返回 x 的反正弦值。                                |
+| atan(x)          | 以介于 -PI/2 与 PI/2 弧度之间的数值来返回 x 的反正切值。       |
+| atan2(y,x)       | 返回从 x 轴到点 (x,y) 的角度（介于 -PI/2 与 PI/2 弧度之间）。 |
+| cos(x)           | 返回数的余弦。                                    |
+| exp(x)           | 返回 Ex 的指数。                                 |
+| log(x)           | 返回数的自然对数（底为e）。                             |
+| pow(x,y)         | 返回 x 的 y 次幂。                               |
+| random()         | 返回 0 ~ 1 之间的随机数。                           |
+| sin(x)           | 返回数的正弦。                                    |
+| sqrt(x)          | 返回数的平方根。                                   |
+| tan(x)           | 返回角的正切。                                    |
+| tanh(x)          | 返回一个数的双曲正切函数值。                             |
+| trunc(x)         | 将数字的小数部分去掉，只保留整数部分。                        |
+
 
 ## 深拷贝
 
