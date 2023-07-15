@@ -45,6 +45,82 @@ Object的每个实例都具有下列方法和属性：
 - `toString()`：返回对象的字符串表示
 - `valueOf()`：返回对象字符串、数组或布尔值表示
 
+Object的静态对象如下：
+- Object.assign()：将一个或多个源对象的所有可枚举自有属性的值复制到目标对象中。 
+- Object.create()：使用指定的原型对象和属性创建一个新对象。 
+- Object.defineProperties()：向对象添加多个由给定描述符描述的命名属性。 
+- Object.defineProperty()：向对象添加一个由给定描述符描述的命名属性。 
+- Object.entries()：返回包含给定对象自有可枚举字符串属性的所有 [key, value] 数组。 
+- Object.freeze()：冻结一个对象。其他代码不能删除或更改其任何属性。 
+- Object.fromEntries()：从一个包含 [key, value] 对的可迭代对象中返回一个新的对象（Object.entries 的反操作）。 
+- Object.getOwnPropertyDescriptor()：返回一个对象的已命名属性的属性描述符。 
+- Object.getOwnPropertyDescriptors()：返回一个包含对象所有自有属性的属性描述符的对象。 
+- Object.getOwnPropertyNames()：返回一个包含给定对象的所有自有可枚举和不可枚举属性名称的数组。 
+- Object.getOwnPropertySymbols():返回一个数组，它包含了指定对象所有自有 symbol 属性。 
+- Object.getPrototypeOf()：返回指定对象的原型（内部的 [[Prototype]] 属性）。 
+- Object.hasOwn()：如果指定属性是指定对象的自有属性，则返回 true，否则返回 false。如果该属性是继承的或不存在，则返回 false。 
+- Object.is()：比较两个值是否相同。所有 NaN 值都相等（这与 == 使用的 IsLooselyEqual 和 === 使用的 IsStrictlyEqual 不同）。 
+- Object.isExtensible()：判断对象是否可扩展。 
+- Object.isFrozen()：判断对象是否已经冻结。 
+- Object.isSealed()：判断对象是否已经封闭。 
+- Object.keys():返回一个包含所有给定对象自有可枚举字符串属性名称的数组。 
+- Object.preventExtensions()：防止对象的任何扩展。 
+- Object.seal()：防止其他代码删除对象的属性。 
+- Object.setPrototypeOf()：设置对象的原型（即内部 [[Prototype]] 属性）。 
+- Object.values()：返回包含给定对象所有自有可枚举字符串属性的值的数组。
+
+## 深入理解对象
+### 对象的属性特性
+对象的属性(property，或者说属性成员）都有一些特性（attribute）：
+- [[Configurable]]：是否可以通过delete删除，是否能修改属性的特性或修改属性为访问器（get、set）属性
+- [[Enumerable]]：是否可枚举，即是否可以通过for-in循环访问(注意，for-in会遍历对象与原型中所有的可枚举属性)
+- [[Writable]]：是否可以修改值
+- [[value]]：属性的值
+
+我们创建一个对象时，其属性的四个特性的默认值为：true、true、true、赋予其的值
+
+如果要修改特性就必须使用`Object.defineProperty()`方法，这个方法接收三个参数：`属性所在的对象`，`属性名`，`描述符对象`。
+其中描述符对象是一个只能包含上面四个特性中的几个为属性的对象。
+太绕了，举个🌰：
+
+```js
+let person = { name: 'aaa' };
+Object.defineProperty(person, 'name' , {
+    Configurable: true,
+    Enumerable: true,
+    Writable: false,
+    value: 'this is a unwritable property'
+})
+```
+
+在调用这个方法时，如果不指定，那么[[Configurable]]、[[Enumerable]]与[[Writable]]的值都是false
+
+除此之外，属性还有访问器特性：
+- [[getter]]：在读取属性时调用的函数，默认为undefined
+- [[setter]]：在写入属性时调用的函数，默认为undefined
+
+访问器属性默认不可设置，只能用`defineProperty()`来定义。我们可以这样使用这些特性：
+
+```js
+let person = { _name: 'aaa' };
+Object.defineProperty(person, 'name' , {
+    get: function (){
+        return this._name;
+    }
+    set: function (newVal) {
+        this._name = newVal;
+    }
+})
+```
+
+我们通常使用 下划线加属性名 表示这个属性只能通过对象方法访问
+
+如果只指定了getter则写入会被忽略。在严格模式下会报错。
+
+ES5中定义了`defineProperties()`方法，可以一次定义多个属性。
+
+使用`Object.getOwnPropertyDescriptor()`方法可以取得给定属性的描述符。
+
 
 ## new
 在JS中，**任意**函数都可以通过new操作符来新建一个对象。
