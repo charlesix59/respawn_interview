@@ -49,6 +49,9 @@ js通过Document类型表示文档，document对象时HTMLDocument的一个实�
 - forms：所有form元素
 - images：所有img元素
 - links：所有带href属性的a元素
+- readyState：（HTML5）loading：正在加载，complete：加载完成
+- head：（HTML5）引用`<header>`元素
+- charset：（HTML5）获取meta中定义的字符集
 
 方法：
 - getElementById
@@ -74,11 +77,23 @@ js通过Document类型表示文档，document对象时HTMLDocument的一个实�
 - dir：文本的方向
 - className：对应元素class属性
 - attribute：包含一个NameNodeMap，与NodeList类似，会保存元素的所有属性
+- childElementCount：返回子节点的个数 
+- firstElementChild：指向第一个子元素 
+- lastElementChild：指向最后一个子元素 
+- previousElementSibling：指向前一个同辈元素 
+- nextElementSibling：指向后一个同辈元素
+- classList：（HTML5）返回一个元素的类列表
+  - add(value)：将指定的value添加到列表中，已存在则不添加
+  - contains(value)：判断列表中是否存在给定值
+  - remove(value)：从列表中删除给定的字符串
+  - toggle(value)：如果列表中存在value则删除，不存在则添加
+- `data-*`：（HTML5）为元素提供与渲染无关的信息，可以随便命名，使用`<ele>.dataset.<dataname>`访问
 
 方法：
 - getAttribute
 - setAttribute
 - removeAttribute
+- ScrollIntoView()：使得元素进入视野
 
 ### Text类型
 其特性为：
@@ -149,6 +164,10 @@ appendChild(node)
 
 // 把子节点插入到指定的位置，子节点会插入到referenceElement之前
 parentElement.insertBefore(newElement, referenceElement)
+// 在某个指定位置插入元素
+element.insertAdjacentElement(where,element);
+// 在某个指定位置插入HTML字符串
+element.insertAdjacentHTML(where,text);
 ```
 
 ### 删除节点
@@ -178,6 +197,8 @@ querySelectorAll('cssSelector');
 document.documentElement;  
 // 获取页面中的BODY标签
 document.body; 
+// 获取焦点元素
+document.activeElement;
 // 获取页面中的所有元素节点的对象集合型
 document.all['']; 
 ```
@@ -204,6 +225,8 @@ replaceChild(newElement,oldElement)
 ```js
 // 返回一个相同的节点，可以设置true或false决定是否深拷贝
 cloneNode();
+// 接收一个css选择符，如果调用元素与该选择符匹配则返回ture，否则返回false
+matchesSelector();
 ```
 
 ### 属性操作
