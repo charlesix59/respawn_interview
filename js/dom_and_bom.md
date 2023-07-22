@@ -240,6 +240,78 @@ removeAttribute(key);
 createAttribute(key);
 ```
 
+## DOM2与DOM3
+DOM1主要是定义HTML与XML文档的结构，DOM2与DOM3主要是在这个基础上引入了更多的交互能力
+
+### DOM变化
+#### 引入命名空间
+这个技术对于web开发来说过于偏门与落后了，如今是HTML5的时代故不对此做任何说明。
+
+#### 其他变化
+- document.importNode(node,deep) 复制传入的node，第二个参数决定是否复制子。在HTML中不常用
+- document.implementation.hasFeature() 判断是否有某种特性（已过时！）
+
+### 样式变化
+可以使用`<element>.style.<styleName>`的方式来访问样式，但是styleName用的是css样式的对应的小写驼峰式
+
+style属性还有一些属性和方法:
+- cssText:style 特性中的 CSS 代码 
+- length:应用给元素的 CSS 属性的数量 
+- parentRule:表示 CSS 信息的 CSSRule 对象 
+- getPropertyCSSValue(propertyName):返回包含给定属性值的 CSSValue 对象(暂时没发现能用)
+- getPropertyPriority(propertyName):如果给定的属性使用了!important 设置，则返回"important";否则，返回空字符串。 
+- getPropertyValue(propertyName):返回给定属性的字符串值。 
+- item(index):返回给定位置的 CSS 属性的名称。 
+- removeProperty(propertyName):从样式中删除给定属性。 
+- setProperty(propertyName,value,priority):将给定属性设置为相应的值，并加上优先权标志("important"或者一个空字符串)。
+
+可以使用`document.defaultView.getComputedStyle()`方法获取某个样式的计算属性
+
+可以使用document.styleSheets属性来操作样式表，返回所有`<style>`元素与rel设置为stylesheet的`<link>`元素
+
+### 遍历
+**`NodeIterator`** 接口表示一个遍历 DOM 子树中节点列表的成员的迭代器。节点将按照文档顺序返回。
+
+NodeIterator 可以使用 `Document.createNodeIterator()` 方法创建，如下所示：
+
+```js
+var nodeIterator = document.createNodeIterator(root, whatToShow, filter);
+```
+参数如下：
+- root搜索起点
+- whatToShow：表示要分文哪些节点
+- filter：一个NodeFilter对象或者是一个表示应该接受或拒绝某些节点的函数
+
+whatToShow可能的值如下：
+
+| Constant                                 | Numerical value                                 | Description                                                                                                                                            |
+|------------------------------------------|-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `NodeFilter.SHOW_ALL`                    | `-1` (that is the max value of `unsigned long`) | 显示所有节点。                                                                                                                                                |
+| `NodeFilter.SHOW_ATTRIBUTE` 已弃用          | `2`                                             | 显示属性 `Attr` 节点。只有当用一个 `Attr` 节点作为根节点来创建 `NodeIterator` 时才有意义; 在这种情况下，这意味着属性节点会出现在迭代或遍历的首位。因为属性永远不会是其他节点的子节点，当遍历整个文档树时它们不会出现。                           |
+| `NodeFilter.SHOW_CDATA_SECTION` 已弃用      | `8`                                             | 显示`CDATASection` 节点。                                                                                                                                   |
+| `NodeFilter.SHOW_COMMENT`                | `128`                                           | 显示`Comment` 节点。                                                                                                                                        |
+| `NodeFilter.SHOW_DOCUMENT`               | `256`                                           | 显示`Document` 节点。                                                                                                                                       |
+| `NodeFilter.SHOW_DOCUMENT_FRAGMENT`      | `1024`                                          | 显示`DocumentFragment`节点。                                                                                                                                |
+| `NodeFilter.SHOW_DOCUMENT_TYPE`          | `512`                                           | 显示`DocumentType` 节点。                                                                                                                                   |
+| `NodeFilter.SHOW_ELEMENT`                | `1`                                             | 显示`Element` 节点。                                                                                                                                        |
+| `NodeFilter.SHOW_ENTITY` 已弃用             | `32`                                            | 显示 `Entity` 节点。只有当用一个 `Entity` 节点作为它的根节点来创建一个 `NodeIterator` 时才有意义; 在这种情况下， `Entity` 节点会出现在迭代或遍历的首位。因为 `Entity` 永远不会是其他节点的子节点，当遍历整个文档树时它们不会出现。         |
+| `NodeFilter.SHOW_ENTITY_REFERENCE` 已弃用   | `16`                                            | 显示`EntityReference` 节点。                                                                                                                                |
+| `NodeFilter.SHOW_NOTATION` 已弃用           | `2048`                                          | 显示 `Notation` 节点。只有当用一个 `Notation` 节点作为它的根节点时来创建一个 `NodeIterator` 才有意义; 在这种情况下， `Notation` 节点会出现在迭代或遍历的首位。因为 `Notation` 永远不会是其他节点的子节点，当遍历整个文档树时它们不会出现。 |
+| `NodeFilter.SHOW_PROCESSING_INSTRUCTION` | `64`                                            | 显示`ProcessingInstruction` (en-US) 节点。                                                                                                                  |
+| `NodeFilter.SHOW_TEXT`                   | `4`                                             | 显示[`Text`](https://developer.mozilla.org/zh-CN/docs/Web/API/Text) 节点。                                                                                  |
+
+可以使用nextNode()来获取下一个元素好previousNode()来获取上一个元素
+
+TreeWalker是NodeIterator的高级版本，他提供了下列方法
+- parentNode()：获取当前节点父节点
+- firstChild()
+- lastChild()
+- nextSibling()
+- previousSibling()
+
+### 范围
+参考：https://developer.mozilla.org/zh-CN/docs/Web/API/Range
+
 # BOM
 
 Browser Object Model(BOM),浏览器对象模型，提供了独立于内容与浏览器窗口进行交互的对象
