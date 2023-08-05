@@ -399,11 +399,17 @@ window是BOM的顶级对象
 navigator 对象主要用来获取浏览器的属性，区分浏览器类型。属性较多，且兼容性比较复杂
 
 属性如下：
-
-![navigator属性](https://camo.githubusercontent.com/0e4a35fe26c49decdf39a90b9e9f8427cc38b219adaf2051e0a36df7777c099c/68747470733a2f2f7374617469632e7675652d6a732e636f6d2f36373937616234302d383038392d313165622d616239302d6439616538313462323430642e706e67)
-
-![navigator属性](https://camo.githubusercontent.com/cf770c98de2cd0dc2cdd835145a2d8e39966aba3ea69efcd67469dc0b3f49a07/68747470733a2f2f7374617469632e7675652d6a732e636f6d2f37343039363632302d383038392d313165622d616239302d6439616538313462323430642e706e67)
-
+- Navigator.cookieEnabled 只读：当忽略 Cookie 时返回 false，否则返回 true 
+- Navigator.geolocation 只读：返回一个 Geolocation 对象，据之可访问设备的地理位位置信息。 
+- NavigatorConcurrentHardware.hardwareConcurrency (en-US) 只读：返回可用的逻辑处理器核心数。 
+- NavigatorLanguage.language (en-US) 只读"返回 DOMString 表示用户的首先语言，通常是浏览器用户界面的语言。当未知的时，返回 null。 
+- NavigatorLanguage.languages (en-US) 只读：返回一个表示用户已知语言的 DOMString 数组，并按优先顺序排列。 
+- Navigator.maxTouchPoints 只读：Returns the maximum number of simultaneous touch contact points are supported by the current device. 
+- NavigatorOnLine.onLine (en-US) 只读：返回 Boolean (en-US) 来表明浏览器是否联网。 
+- Navigator.oscpu：返回当前操作系统名。 
+- Navigator.serviceWorker 只读：返回 ServiceWorkerContainer 对象用于提供注册、删除、更新以及为了 associated document 的 ServiceWorker 对象之间的通信。 
+- NavigatorStorage.storage (en-US) 只读：Returns the singleton StorageManager object used for managing persistence permissions and estimating available storage on a site-by-site/app-by-app basis. 
+- NavigatorID.userAgent (en-US) 只读：返回当前浏览器的用户代理。
 ### screen
 
 客户端显示器的信息

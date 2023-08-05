@@ -281,6 +281,19 @@ console.log(test.a); //>> 2
 // 使用new 来调用func(..)时，我们会构造一个新对象并把它绑定到func(..)调用中的this上
 ```
 
+### 作用域安全的构造函数
+如果我们直接使用调用构造函数而不使用`new`操作符，this会映射到全局变量。为了解决这个问题我们需要作用域安全的构造函数:
+
+```js
+function Person(name){
+    if(this instanceof  Person){
+        this.name = name;
+    }else {
+        return new Person(name);
+    }
+}
+```
+
 ## 箭头函数
 在 ES6 的语法中还提供了箭头函语法，让我们在代码书写时就能确定 this 的指向（编译时绑定）
 
