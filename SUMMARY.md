@@ -24,22 +24,32 @@
       * [动画](css/css_animation.md)
       * [字体](css/css_text.md)
 * JS
-    * [JS基础](js/js_basis.md)
-    * [对象](js/object.md)
-    * [函数](js/js_function.md)
-    * [作用域](js/js_scope.md)
-    * [上下文](js/js_this.md)
-    * [原型](js/js_prototype.md)
-    * [面向对象](js/js_oop.md)
-    * [同步与异步](js/sync_and_async.md)
-    * [事件](js/js_event.md)
-    * [DOM与BOM](js/dom_and_bom.md)
-    * [ES6+新特性](js/es6_further_features.md)
-    * [v8引擎](js/v8engine.md)
-    * [网页优化](js/web_optimize.md)
-    * [安全](js/web_safe.md)
-    * [模块化](js/js_module.md)
-    * [设计模式](js/design_pattern.md)
+    * JS基础
+      * [JS基础](js/1_1_basis.md)
+      * [对象](js/1_2_object.md)
+    * JS核心
+      * [函数](js/2_1_function.md)
+      * [作用域](js/2_2_scope.md)
+      * [上下文](js/2_3_context.md)
+      * [this](js/2_4_this.md)
+      * [原型](js/2_5_prototype.md)
+      * [面向对象](js/2_6_oop.md)
+      * [同步与异步](js/2_7_sync_and_async.md)
+    * JS重点组成部分
+      * [事件](js/3_1_event.md)
+      * [DOM与BOM](js/3_2_dom_and_bom.md)
+      * [调试](js/3_3_debug.md)
+      * [数据格式](js/3_4_data_format.md)
+      * [网络](js/3_5_network.md)
+    * 现代JS
+      * [ES6+新特性](js/4_1_es6_further_features.md)
+      * [v8引擎](js/4_2_v8engine.md)
+      * [模块化](js/4_3_module.md)
+    * JS优化
+      * [最佳实践](js/5_1_best_practice.md) 
+      * [网页优化](js/5_2_web_optimize.md)
+      * [安全](js/5_3_web_safe.md)
+      * [设计模式](js/5_4_design_pattern.md)
 * 其他
     * [加密算法](other/crypto.md)
 
