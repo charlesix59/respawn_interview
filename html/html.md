@@ -18,7 +18,8 @@ HTML(Hyper Text Markup Language),中文：超文本标记语言。
 
 ### 加载过程中可能出现的问题
 - FOUC：主要指的是样式闪烁的问题，即先出现了内容后来又突然出现了样式的情况，原因是CSS加载过慢或CSS放在了文档底部
-- 白屏：因为浏览器没有加载完CSS所以迟迟不渲染不渲染或者因为JS一直堵塞文档加载导致
+- 白屏：因为浏览器没有加载完CSS所以迟迟不渲染或者因为JS一直堵塞文档加载导致
+
 ## SGML、XML、HTML与XHTML
 SGML（Standard Generalized Markup language）是标准通用置标语言，是一种定义电子文档结构和描述其内容的国际标准语言，是所有电子文档标记语言的起源。下面都是SGML的应用
 
@@ -34,7 +35,7 @@ XHTML（Extensible Hypertext Markup Language）可拓展的超文本标记语言
 DHTML 将 HTML、JavaScript、DOM 以及 CSS 组合在一起，用于创造动态性更强的网页。通过 JavaScript 和 HTML DOM，能
 够动态地改变 HTML 元素的样式。
 
-## <!DOCTYPE>
+## `<!DOCTYPE>`
 
 <!DOCTYPE>声明位于 HTML 文档中的第一行，处于 `html`标签之前。告知浏览器的解析器用什么文档标准解析这个文档。
 
