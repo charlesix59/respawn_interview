@@ -38,7 +38,7 @@ null也只有一个值
 
 null表示一个空对象指针
 
-undefined的派生自null，因此undefined==null
+undefined派生自null，因此undefined==null
 
 ⚠：`type of null = object`
 
@@ -96,7 +96,7 @@ Not a Number (NaN),是一个特殊的数值,这个数值用来表示一个本来
 
 比如:任何数字/0=NaN
 
-以及,任何涉及NaN的操作都会返回NaN,一个更易花的特性是`NaN!=NaN`,如果我们想知道一个值是不是NaN,则需要使用`isNaN()`这个函数。
+以及,任何涉及NaN的操作都会返回NaN,一个更迷惑的特性是`NaN!=NaN`,如果我们想知道一个值是不是NaN,则需要使用`isNaN()`这个函数。
 这个函数接受一个参数之后会尝试吧参数转化为数字,如果转化成果则返回false,如果转化不成功或者是NaN则返回true
 
 ##### 数值转化

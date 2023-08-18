@@ -39,9 +39,9 @@ person["name"]
 Object的每个实例都具有下列方法和属性：
 - `constructor`：用于创建当前对象的函数
 - `hasOwnProperty()`：用于检查给定属性在当前对象的实例中是否存在
-- `isPrototypeOf(object)`：用于检查2传入的对象是否是另一个对象的原型
+- `isPrototypeOf(object)`：用于检查传入的对象是否是另一个对象的原型
 - `propertyIsEnumerable(propertyName)`：用于检测给定的属性是否能够使用for-in来进行枚举
-- `oLocaleString()`：返回对象的字符串表示，与执行环境的地区对应
+- `toLocaleString()`：返回对象的字符串表示，与执行环境的地区对应
 - `toString()`：返回对象的字符串表示
 - `valueOf()`：返回对象字符串、数组或布尔值表示
 
@@ -265,7 +265,7 @@ colors.length;//100
 
 ### length属性
 
-length并不是制度的，如果设置length小于数组长度，则会移除多余的元素，如果length大于数组长度，则会将新增的项设置为undefined
+length并不是只读的，如果设置length小于数组长度，则会移除多余的元素，如果length大于数组长度，则会将新增的项设置为undefined
 
 ### 检测数组
 
@@ -548,7 +548,7 @@ this指向的是函数执行的函数对象。
 
 每个函数都有两个属性：`length`和`prototype`。
 
-length属性表示函数希望接受的参数的甘薯。
+length属性表示函数希望接受的参数的个数。
 
 prototype属性保存着函数的实例方法的真正所在。prototype是不可枚举的，因此无法使用for-in遍历。
 
