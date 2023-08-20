@@ -19,7 +19,7 @@ function func() {
 a = 2;
 func(); //>> 2
 ```
-如果函数出于严格模式则this为undefined
+如果函数处于严格模式则this为undefined
 ```js
 function func() {
   "use strict";

@@ -7,7 +7,6 @@ return时也不必带有任何返回值，这样的情况下返回undefined
 严格模式对函数有一些限制：
 
 - 不能把函数命名为eval或者arguments
-- 不能把参数命名为eval或者arguments
 - 不能出现两个命名参数同名的情况
 
 ## 函数的参数
@@ -47,9 +46,9 @@ let func0 = function () {
     console.log("函数的表达式形态");
 }
 
-    //函数的表达式形态 之二
-    (function func1() {
-    })
+ //函数的表达式形态 之二
+ (function func1() {
+ })
 
 //函数的嵌套形态
 let func2 = function () {
@@ -191,26 +190,23 @@ function addEventHandler(element, eventType, func) {
             element.addEventListener(eventType, func, false);
         }
     }
-}
-
-else
-if (typeof attachEvent == 'function') {
-    addEventHandler = function (element, eventType, func) {
-        element.attachEvent('on' + eventType, func);
-    }
-} else {
-    addEventHandler = function (element, eventType, func) {
-        element['on' + eventType] = func;
-    }
-}
-return addEventHandler(element, eventType, func);
+   else if (typeof attachEvent == 'function') {
+       addEventHandler = function (element, eventType, func) {
+           element.attachEvent('on' + eventType, func);
+       }
+   } else {
+       addEventHandler = function (element, eventType, func) {
+           element['on' + eventType] = func;
+       }
+   }
+   return addEventHandler(element, eventType, func);
 }
 ```
 
 将代码改为如上的方式，就可以在整个页面运行期间如果多次调用该函数，只走一遍if分支，因为在第一次运行函数时，if分支中的函数就覆盖了外部的函数。比如在Chrome浏览器中，第一次执行代码后，打印addEventHandler函数将变为如下这样：
 
 ```js
-function (element, eventType, func) {
+function fn(element, eventType, func) {
     element.addEventListener(eventType, func, false);
 }
 ```
