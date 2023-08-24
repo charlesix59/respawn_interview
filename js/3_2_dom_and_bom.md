@@ -254,7 +254,7 @@ DOM1主要是定义HTML与XML文档的结构，DOM2与DOM3主要是在这个基�
 这个技术对于web开发来说过于偏门与落后了，如今是HTML5的时代故不对此做任何说明。
 
 #### 其他变化
-- document.importNode(node,deep) 复制传入的node，第二个参数决定是否复制子。在HTML中不常用
+- document.importNode(node,deep) 复制传入的node，第二个参数决定是否复制子node。在HTML中不常用
 - document.implementation.hasFeature() 判断是否有某种特性（已过时！）
 
 ### 样式变化
@@ -398,7 +398,6 @@ window是BOM的顶级对象
 
 - location.reload()，此方法可以重新刷新当前页面
 - location.assign(url)，打开传入的url并生成一条历史记录，等于直接为location赋值
-- 
 
 ### navigator
 

@@ -67,7 +67,7 @@ _但是请不要使用setAttribute()或者修改元素节点的方式修改value
 - novalidate：禁用验证
 
 #### 选择输入
-可以使用select元素创建选择框，这个元素的在js为HTMLSelectElement类型：https://developer.mozilla.org/zh-CN/docs/Web/API/ValidityState
+可以使用select元素创建选择框，这个元素的在js为HTMLSelectElement类型：https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement
 
 对于单选框，可以使用selectedIndex属性获取选中项
 
@@ -319,7 +319,7 @@ SSE（Sever-Sent Event，服务器发送事件）是围绕只读Comet交互推�
 一个 EventSource 实例会对 HTTP 服务器开启一个持久化的连接，以 `text/event-stream` 格式发送事件，
 此连接会一直保持开启直到通过调用 `EventSource.close()` 关闭。
 
-EventSource有个readyState属性：0表示正连接服务器，1变送hi打开了连接，2表示关闭了连接
+EventSource有个readyState属性：0表示正连接服务器，1表示打开了连接，2表示关闭了连接
 
 除此之外还有三个事件：
 - error：在事件源连接未能打开时触发。 

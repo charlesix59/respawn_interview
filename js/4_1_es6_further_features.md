@@ -50,7 +50,7 @@ console.log(name)    //>>benshan
 
 ### 模板字符串
 
-ES6引入新的声明字符串的方式``` `
+ES6引入新的声明字符串的方式````
 
 特性：
 
@@ -220,9 +220,9 @@ class SmartPhone extends Phone{
 
 - `Number.parseFloat`：和parseFloat相同
 
-- `Match,trunc`：去掉小数部分
+- `Match.trunc`：去掉小数部分
 
-- `Math,sign`：判断一个数是正数、负数还是0
+- `Math.sign`：判断一个数是正数、负数还是0
 
 
 ### 对象方法拓展
