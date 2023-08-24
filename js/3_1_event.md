@@ -138,7 +138,7 @@ event.stopPropagation() 或者 ie 下的方法 event.cancelBubble = true;
 - abort：当用户停止下载时，在`<Object>`元素上触发
 - error：发生js错误时在window上触发
 - select：用户选择文本框时触发
-- resize：窗口大小变化时在window上触发2
+- resize：窗口大小变化时在window上触发
 - scroll：带滚动条的元素滚动时触发
 
 ### 焦点事件
@@ -306,20 +306,20 @@ const EventUtils = {
     let outputElement = document.getElementById("output");
     let obj = {};
     Object.defineProperty(obj,"value",{
-    get(){
-        return inputElement.value
-    },
-        set(v) {
-        inputElement.value = v
-        outputElement.innerText = v
-    }
+      get(){
+          return inputElement.value
+      },
+      set(v) {
+          inputElement.value = v
+          outputElement.innerText = v
+      }
     })
-        inputElement.addEventListener("keyup",(ev)=>{
-        console.log(ev)
-        obj.value = ev.target.value;
+    inputElement.addEventListener("keyup",(ev)=>{
+      console.log(ev)
+      obj.value = ev.target.value;
     })
-        outputElement.addEventListener("click",()=>{
-        obj.value = obj.value + "1";
+    outputElement.addEventListener("click",()=>{
+      obj.value = obj.value + "1";
     })
 </script>
 ```

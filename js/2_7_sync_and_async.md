@@ -43,7 +43,7 @@ const utils = require('utils')
 const fs = require('fs')
 let mineReadFile = util.promisify(fs.readFile)
 mineReadFile('./xxx.xxx').then(value=>{
-    const.log(value.toString())
+    console.log(value.toString())
 })
 ```
 
@@ -144,7 +144,7 @@ const result = Promise.all(Promise[])
 
 - 抛出错误，结果失败
 - 返回结果是非Promise类型对象，结果成功
-- 如果返回了一个Promise对象，则返回的Promise结果与与之相同
+- 如果返回了一个Promise对象，则返回的Promise结果与之相同
 
 
 #### Promise如何串联多个任务？
@@ -157,7 +157,7 @@ const result = Promise.all(Promise[])
 
 #### 中断Promise链
 
-当返回一个Pending状态的Promise对象，则后序的.then方法都不会执行
+当返回一个Pending状态的Promise对象，则后续的.then方法都不会执行
 
 ### 自定义Promise
 
