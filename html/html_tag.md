@@ -25,3 +25,16 @@ link 标签定义文档与外部资源的关系
 ```html
 <link rel="表明当前文档和外部资源的关系" href="文件路径" type="说明外部资源的MIME类型">
 ```
+
+## 其他element
+行内元素：a b span img strong sub sup button input label select textarea：
+
+- 行内元素不会新开一行
+- 不能包含块级元素
+- 设置 width 无效，height 无效（可以设置 line-height），设置 margin 和 padding 的上下不会对其他元素产生影响。
+
+块元素：div ul ol li dl dt dd h1 h2 h3 h4 h5 h6 p：
+- 会新起一行
+- 可以包含块元素
+
+

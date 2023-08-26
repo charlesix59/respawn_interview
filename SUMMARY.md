@@ -52,4 +52,5 @@
       * [设计模式](js/5_4_design_pattern.md)
 * 其他
     * [加密算法](other/crypto.md)
+    * [sql](other/sql.md)
 
