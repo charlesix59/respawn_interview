@@ -355,6 +355,16 @@ console.log(arr2) //>> [1,2]
 
 `reduceRight()`方法，会从数组最后一项开始，逐个遍历直到第一项，其他行为与`reduce`方法相同
 
+## 类数组
+
+类数组是一个拥有 `length` 属性和若干索引属性的对象，类数组对象和数组类似，但是不能调用数组的方法，比如arguments 和 DOM 方法的返回结果
+
+类数组如果想转化为数组：
+1. `Array.prototype.slice.call(arrayLike);`
+2. `Array.prototype.splice.call(arrayLike);`
+3. `Array.prototype.concat.apply([], arrayLike);`
+4. `Array.from(arrayLike);`
+
 ## Date
 
 Date类型保存的日期能够精确到1970年1月1日之前或之后的285616年

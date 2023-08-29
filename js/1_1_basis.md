@@ -47,7 +47,7 @@ undefined派生自null，因此undefined==null
 
 Boolean类型的字面量有两个:ture和false,这两个值是区分大小写的
 
-所有的数据类型都有雨boolean类型转换的方法
+所有的数据类型都有与boolean类型转换的方法
 
 | 数据类型      | true | false     |
 |-----------|------|-----------|
@@ -56,6 +56,13 @@ Boolean类型的字面量有两个:ture和false,这两个值是区分大小写�
 | Object    | 任何对象 | null      |
 | undefined |      | undefined |
 | Boolean   | true | false     |
+
+会发生与boolean类型的隐性转化的情况有：
+- if (..) 语句中的条件判断表达式
+- for ( .. ; .. ; .. ) 语句中的条件判断表达式（第二个）。
+- while (..) 和 do..while(..) 循环中的条件判断表达式。
+- ? : 中的条件判断表达式。 
+- 逻辑运算符 ||（逻辑或）和 &&（逻辑与）左边的操作数（作为条件判断表达式）。
 
 #### number类型
 

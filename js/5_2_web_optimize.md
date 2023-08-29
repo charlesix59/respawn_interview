@@ -86,32 +86,38 @@ const memorize = function (func,content){
 
 防抖的实现：
 ```js
-//todo: change it
 /**
- * 防抖的实现
+ * 节流的实现
  * @param {function} func 需要防抖的函数
- * @param {number} wait 等待的时间
+ * @param {number} wait 等待时间
+ * @param {boolean} immediate 是否立即执行
  */
-function debounce(func,wait){
-    let timer = null;
-    let startTime = Date.now();
-    return function () {
-        let curTime = Date.now();
-        let reaming = wait - (curTime - startTime);
-        let context = this;
-        let args = arguments;
-        clearTimeout(timer)
-        if(reaming<=0){
-            func.apply(context,args);
-            startTime = Date.now();
-        }
-        else{
-            timer = setTimeout(()=>{
-                func.apply(context,args);
-                startTime = Date.now();
-            },wait);
-        }
+function debounce(func,wait,immediate){
+  let timeout;
+  return function (){
+    let context = this;
+    let args = arguments;
+
+    if(timeout){
+      clearTimeout(timeout);
     }
+    if(immediate){
+      // 如果没有timeout为false即第一次运行，则call为
+      let callNow = !timeout;
+      timeout = setTimeout(function (){
+        timeout = null;
+      },wait)
+      if(callNow){
+        // 使用func.apply是为了保证func的this与当前函数的this相同
+        func.apply(context,args);
+      }
+    }
+    else{
+      setTimeout(function (){
+        func.apply(context,args)
+      },wait);
+    }
+  }
 }
 ```
 
@@ -119,37 +125,30 @@ function debounce(func,wait){
 
 ```js
 /**
- * 节流的实现
- * @param {function} func 需要防抖的函数
- * @param {number} wait 等待时间
- * @param {boolean} immediate 是否立即执行
+ * 防抖的实现
+ * @param {function} func 需要节流的函数
+ * @param {number} wait 等待的时间
  */
-function throttle(func,wait,immediate){
-    let timeout;
-    return function (){
-        let context = this;
-        let args = arguments;
-
-        if(timeout){
-            clearTimeout(timeout);
-        }
-        if(immediate){
-            // 如果没有timeout为false即第一次运行，则call为
-            let callNow = !timeout;
-            timeout = setTimeout(function (){
-                timeout = null;
-            },wait)
-            if(callNow){
-                // 使用func.apply是为了保证func的this与当前函数的this相同
-                func.apply(context,args);
-            }
-        }
-        else{
-            setTimeout(function (){
-                func.apply(context,args)
-            },wait);
-        }
+function throttle(func,wait){
+  let timer = null;
+  let startTime = Date.now();
+  return function () {
+    let curTime = Date.now();
+    let reaming = wait - (curTime - startTime);
+    let context = this;
+    let args = arguments;
+    clearTimeout(timer)
+    if(reaming<=0){
+      func.apply(context,args);
+      startTime = Date.now();
     }
+    else{
+      timer = setTimeout(()=>{
+        func.apply(context,args);
+        startTime = Date.now();
+      },wait);
+    }
+  }
 }
 ```
 
