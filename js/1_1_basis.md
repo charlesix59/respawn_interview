@@ -17,6 +17,24 @@ js 一共有五种基本数据类型，分别是 **Undefined**、**Null**、**Bo
 
 我们可以使用`typeof`关键字判断变量的类型，不过需要注意*typeof null == "object"*
 
+> typeof 可能获取的值如下：
+> 
+> "undefined"：表示变量未定义。
+> 
+> "boolean"：表示变量是布尔值。
+> 
+> "number"：表示变量是数字。
+> 
+> "string"：表示变量是字符串。
+> 
+> "bigint"：表示变量是一个大整数。
+> 
+> "symbol"：表示变量是一个符号。
+> 
+> "function"：表示变量是一个函数。
+> 
+> "object"：表示变量是一个对象（除了函数外）。
+
 #### undefined
 
 undefined只有一个值

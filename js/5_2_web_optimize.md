@@ -87,7 +87,7 @@ const memorize = function (func,content){
 防抖的实现：
 ```js
 /**
- * 节流的实现
+ * 防抖的实现
  * @param {function} func 需要防抖的函数
  * @param {number} wait 等待时间
  * @param {boolean} immediate 是否立即执行
@@ -125,7 +125,7 @@ function debounce(func,wait,immediate){
 
 ```js
 /**
- * 防抖的实现
+ * 节流的实现
  * @param {function} func 需要节流的函数
  * @param {number} wait 等待的时间
  */

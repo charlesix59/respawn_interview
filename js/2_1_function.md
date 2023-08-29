@@ -267,7 +267,8 @@ jQuery之父John Resig曾经提供了一个非常巧妙的思路实现重载，�
      * @param {fn}      被添加进object参与重载的函数逻辑
      */
     function overload(object, name, fn) {
-        var oldMethod = object[name];//存放旧函数，本办法灵魂所在，将多个fn串联起来
+       //存放旧函数，本办法灵魂所在，通过闭包将多个fn串联起来
+        var oldMethod = object[name];
         object[name] = function () {
             // fn.length为fn定义时的参数个数,arguments.length为重载方法被调用时的参数个数
             if (fn.length === arguments.length) {//若参数个数匹配上

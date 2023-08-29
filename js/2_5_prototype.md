@@ -71,9 +71,10 @@ function myInstanceof(left, right) {
     if (typeof left != "object" || left === null) {
         return false
     }
-
+    // 获取左侧对象的原型
     let proto = Object.getPrototypeOf(left)
-
+    // 循环，直到找到左侧的对象的原型链上的某个原型等于右侧对象的原型
+    // 或者找到原型链的尽头
     while (true) {
         if (proto == null) {
             return false

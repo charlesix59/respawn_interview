@@ -305,19 +305,25 @@ const EventUtils = {
     let inputElement = document.getElementById("input");
     let outputElement = document.getElementById("output");
     let obj = {};
+    // 定义一个对象，在dom改变时修改obj的值
+    // 同时对这个对象的数据进行劫持，让修改对象值时同时修改输入输出元素的value
     Object.defineProperty(obj,"value",{
+      // 重写get方法返回输入框的值
       get(){
           return inputElement.value
       },
+      // 重写set方法，修改时将输入框和输出框都修改
       set(v) {
           inputElement.value = v
           outputElement.innerText = v
       }
     })
+    // 在输入时同时修改obj的值
     inputElement.addEventListener("keyup",(ev)=>{
       console.log(ev)
       obj.value = ev.target.value;
     })
+    // 在输出点击加一时也同步修改obj的值
     outputElement.addEventListener("click",()=>{
       obj.value = obj.value + "1";
     })

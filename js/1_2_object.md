@@ -143,6 +143,7 @@ ES5中定义了`defineProperties()`方法，可以一次定义多个属性。
 function objectFactory(){
     // 创建空对象
     let newObject = null,
+        // 获取第一个参数为构造函数
         constructor = Array.prototype.shift().call(arguments);
 
     // 保证传入的“构造函数”是函数
@@ -712,21 +713,21 @@ math对象的一些常用属性如下：
 
 ```js
 /**
- * 深拷贝
+ * 递归地实现深拷贝
  * @param object 需要拷贝的对象
  * @return {*[]|*} 拷贝结束的对象
  */
 function deepCopy(object) {
+    // 如果是基本数据类型则直接返回
     if (!object || typeof object !== "object") return object;
-
+    // 我们要拷贝的对象可能是数组
     let newObject = Array.isArray(object) ? [] : {};
-
+    // 对于对象的每一个key递归的调用深拷贝函数
     for (let key in object) {
         if (object.hasOwnProperty(key)) {
             newObject[key] = deepCopy(object[key]);
         }
     }
-
     return newObject;
 }
 ```
