@@ -27,5 +27,31 @@
 
 ## 高自适应的正方形
 ```css
-/*todo: 再说*/
+/*1.第一种方式是利用vw来实现 vw并不等于document的width，因为默认存在margin */
+.square1 {
+    width: 10%;
+    height: 10vw;
+    background: tomato;
+}
+
+/*2.第二种方式是利用元素的margin/padding百分比是相对父元素width的性质来实现*/
+.square2 {
+    width: 10%;
+    height: 0;
+    padding-top: 10%;
+    background: orange;
+}
+
+/*3.第三种方式是利用子元素的margin-top的值来实现的*/
+.square3 {
+    width: 10%;
+    overflow: hidden;
+    background: yellow;
+}
+
+.square3::after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+}
 ```

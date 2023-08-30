@@ -5,11 +5,6 @@ W3C标准盒模型：属性width，height只包含内容content，不包含borde
 
 IE盒模型：属性width，height包含content、border和padding，指的是content +padding+border。
 
-## 元素大小
-```js
-// todo: offset啥的说一下
-```
-
 ## margin
 ### margin 叠加
 问大家一个问题：_有两个div元素，其高为10px，内边距为10px，外边距为10px，请问这两个div
