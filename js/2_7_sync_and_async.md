@@ -55,7 +55,7 @@ Promise的状态指的是实例对象中的`PromiseState`对象
 
 - padding 未决定的
 
-- resolved / fullfilled 成功
+- resolved / fulfilled 成功
 
 - rejected 失败
 
@@ -365,6 +365,47 @@ Promise.race = function (promises){
     })
 }
 ```
+
+<font color="yellow">美团</font>面试题：创建一个函数接收一个数字表示同时运行的最大Promise数，这个函数
+返回一个函数，这个返回的函数接受一个Promise将其转化为有最大执行数限制的Promise，使其在Promise.all中能够
+同时运行的Promise数量不超过最大Promise数
+
+```js
+function pLimit(time){
+    // 维护一个Promise池
+    let pool = [];
+    // 目前从池子中取出了几个Promise
+    let count = 0;
+
+    /**
+     * 调度器，负责从池子中取出Promise运行并在运行结束后通知下一个Promise运行
+     */
+    function run(){
+        // 如果不超过最大数量并且池子非空，则取出下一个运行
+        if(count<time && pool.length){
+            count++;
+            const {fn,resolve,reject} = pool.shift()
+            fn().then(res=>{
+                resolve(res)
+            }).catch(err=>{
+                reject(err)
+            }).finally(()=>{
+                // 在结束之后将count减一并调用下一个promise
+                count--;
+                run();
+            })
+        }
+    }
+    // 返回一个limit函数，这个函数接受一个返回Promise的函数，并将其转化为拥有最大执行数限制的Promise
+    return function limit(fn){
+        return new Promise((resolve, reject) => {
+            pool.push({fn,resolve,reject});
+            run();
+        })
+    }
+}
+```
+
 ### Generator
 
 Generator 函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。整个 Generator 函数就是一个封装的异步任务，或者说是异步任务的容器。异步操作需要暂停的地方，都用`yield`语句注明
@@ -461,7 +502,7 @@ MicroTask Queue 与 MacroTask Queue 类似，也是一个有序列表。不同�
 
 ### 两者的关系
 
-![](https://pic1.zhimg.com/80/v2-a24e582fda37065755f10bd4dc5a3dc0_hd.jpg)
+![](images/test_cycle.png)
 
 首先整个同步代码是作为一个宏任务先开始执行的，等执行完成之后将继续执行微任务队列中的全部任务，
 之后再执行一个宏任务->全部微任务，如此循环
