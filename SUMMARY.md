@@ -17,12 +17,14 @@
     * layout
       * [盒模型](css/css_box.md)
       * [浮动](css/css_float.md)
-      * [弹性布局](css/css_flex.md)
+      * [弹性布局](css/css_flex_and_grid.md)
       * [常用的布局](css/common_layout.md)
     * display
+      * [重绘与回流]()
       * [伪类与伪元素](css/pseudo.md)
       * [动画](css/css_animation.md)
       * [字体](css/css_text.md)
+      * [绘制](css/css_draw.md)
 * JS
     * JS基础
       * [JS基础](js/1_1_basis.md)
