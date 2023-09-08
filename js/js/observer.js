@@ -1,44 +1,30 @@
-//todo: 未充分测试的
-const event = function (){
-    const topics = {};
+class Subject {
+    constructor() {
+        this.Observers = [];
+    }
+    add(observer) {
+        this.Observers.push(observer);
+    }
+    remove(observer) {
 
-    return{
-        // 订阅事件
-        subscribe(topic,handler){
-            if(!topics.hasOwnProperty(topic)){
-                topics[topic] = [];
-            }
-            topics.push(handler);
-        },
-
-        // 发布事件
-        publish(topic,info){
-            if(topics.hasOwnProperty(topic)){
-                topics[topic].forEach(handler=>{
-                    handler(info);
-                })
-            }
-        },
-
-        // 移除事件
-        remove(topic,handler){
-            if(!topics.hasOwnProperty(topic)){return}
-            let handelIndex = -1;
-            topics[topic].forEach((item,index)=>{
-                if(item===handler){
-                    handelIndex  = index;
-                }
-            })
-            if(handelIndex>0){
-                topics[topic].splice(handelIndex,1);
-            }
-        },
-
-        // 移除所有
-        removeAll(topic){
-            if (topics.hasOwnProperty(topic)) {
-                topics[topic] = [];
-            }
-        }
+        this.Observers = this.Observers.filter((item) => item !== observer);
+    }
+    notify() {
+        this.Observers.forEach((callback) => {
+            callback();
+        });
     }
 }
+function msg1(){
+    console.log(11);
+}
+function msg2(){
+    console.log(22);
+}
+let sub = new Subject();
+sub.add(msg1);
+sub.add(msg2);
+sub.notify();
+sub.remove(msg1);
+sub.notify();
+

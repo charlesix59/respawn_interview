@@ -217,8 +217,6 @@ GitHubUser.prototype.readArticle = function () {
 我们还是来写一下类式继承吧：
 ```js
 class User {
-    class User{
-    name = "";
     constructor(name) {
         this.name = name;
     }

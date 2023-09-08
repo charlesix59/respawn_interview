@@ -92,32 +92,32 @@ const memorize = function (func,content){
  * @param {number} wait 等待时间
  * @param {boolean} immediate 是否立即执行
  */
-function debounce(func,wait,immediate){
-  let timeout;
-  return function (){
-    let context = this;
-    let args = arguments;
+function debounce(func, wait, immediate) {
+    let timeout;
+    return function () {
+        let context = this;
+        let args = arguments;
 
-    if(timeout){
-      clearTimeout(timeout);
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+        if (immediate) {
+            // 如果没有timeout为false即第一次运行，则call为
+            let callNow = !timeout;
+            timeout = setTimeout(function () {
+                timeout = null;
+            }, wait)
+            if (callNow) {
+                // 使用func.apply是为了保证func的this与当前函数的this相同
+                func.apply(context, args);
+            }
+        } else {
+            // 对于非立即执行的防抖，我们无须每次将timeout设置为null
+            timeout = setTimeout(function () {
+                func.apply(context, args);
+            }, wait);
+        }
     }
-    if(immediate){
-      // 如果没有timeout为false即第一次运行，则call为
-      let callNow = !timeout;
-      timeout = setTimeout(function (){
-        timeout = null;
-      },wait)
-      if(callNow){
-        // 使用func.apply是为了保证func的this与当前函数的this相同
-        func.apply(context,args);
-      }
-    }
-    else{
-      setTimeout(function (){
-        func.apply(context,args)
-      },wait);
-    }
-  }
 }
 ```
 
@@ -129,26 +129,27 @@ function debounce(func,wait,immediate){
  * @param {function} func 需要节流的函数
  * @param {number} wait 等待的时间
  */
-function throttle(func,wait){
-  let timer = null;
-  let startTime = Date.now();
-  return function () {
-    let curTime = Date.now();
-    let reaming = wait - (curTime - startTime);
-    let context = this;
-    let args = arguments;
-    clearTimeout(timer)
-    if(reaming<=0){
-      func.apply(context,args);
-      startTime = Date.now();
+function throttle(func, wait) {
+    let timer = null;
+    let startTime = Date.now();
+    return function () {
+        let curTime = Date.now();
+        let reaming = wait - (curTime - startTime);
+        let context = this;
+        let args = arguments;
+        clearTimeout(timer);
+        // 如果在一段时间内重复触发，当某一次和上一次的运行的时间差超过了wait则运行
+        if (reaming <= 0) {
+            func.apply(context, args);
+            startTime = Date.now();
+        } else {
+            // 当一段时间 没有 触发，则由定时器来完成这次一次的运行
+            timer = setTimeout(() => {
+                func.apply(context, args);
+                startTime = Date.now();
+            }, wait);
+        }
     }
-    else{
-      timer = setTimeout(()=>{
-        func.apply(context,args);
-        startTime = Date.now();
-      },wait);
-    }
-  }
 }
 ```
 
