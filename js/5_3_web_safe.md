@@ -55,10 +55,10 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
 - 纯前端渲染（应对存储型和反射型）
 - 转义HTML（应对存储型和反射型）
 - 尽量避免 .innerHTML、.outerHTML、document.write()等直接写入html代码的方法（属性）（应对DOM型）
-- CSP
+- CSP（详情见下文）
 - 输入内容长度控制（增加XSS攻击难度）
 - HTTP-only Cookie（即使完成 XSS 注入后也无法窃取此 Cookie）
-- 验证码
+- 验证码（防止脚本冒充用户提交危险操作）
 
 ### XSS检测
 手动检测或者使用自动扫描工具寻找 XSS 漏洞，例如 Arachni、Mozilla HTTP Observatory、w3af 等。
@@ -117,11 +117,14 @@ CSRF通常是跨域的，因为外域通常更容易被攻击者掌控。但是�
 
 ### CSRF攻击的对策
 - 阻止不明外域的访问
-  - 同源检测
+  - 同源检测（通过Origin Header 或 Referer Header 来检测是否同源）
   - Samesite Cookie
 - 提交时要求附加本域才能获取的信息
-  - CSRF Token
+  - CSRF Token（外加一步token验证）
   - 双重Cookie验证
+    - 在用户访问网站页面时，向请求域名注入一个Cookie，内容为随机字符串
+    - 在前端向后端发起请求时，取出Cookie，并添加到URL的参数中
+    - 后端接口验证Cookie中的字段与URL参数中的字段是否一致，不一致则拒绝
 - 防止网站被利用
   - 严格管理所有的上传接口，防止任何预期之外的上传内容（例如HTML）。 
   - 添加Header X-Content-Type-Options: nosniff 防止黑客上传HTML内容的资源（例如图片）被解析为网页。
