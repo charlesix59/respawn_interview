@@ -20,7 +20,7 @@
       * [弹性布局](css/css_flex_and_grid.md)
       * [常用的布局](css/common_layout.md)
     * display
-      * [重绘与回流]()
+      * [重绘与回流](css/css_layout_and_painting.md)
       * [伪类与伪元素](css/pseudo.md)
       * [动画](css/css_animation.md)
       * [字体](css/css_text.md)
@@ -51,8 +51,11 @@
       * [最佳实践](js/5_1_best_practice.md) 
       * [网页优化](js/5_2_web_optimize.md)
       * [安全](js/5_3_web_safe.md)
-      * [设计模式](js/5_4_design_pattern.md)
+      * [身份验证](js/5_4_verify.md)
+      * [设计模式](js/5_5_design_pattern.md)
 * 其他
     * [加密算法](other/crypto.md)
     * [sql](other/sql.md)
+    * [正则表达式](other/regexp.md)
+    * [混合开发](other/hybird.md)
 
