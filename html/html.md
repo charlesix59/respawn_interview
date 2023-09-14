@@ -35,6 +35,19 @@ XHTML（Extensible Hypertext Markup Language）可拓展的超文本标记语言
 DHTML 将 HTML、JavaScript、DOM 以及 CSS 组合在一起，用于创造动态性更强的网页。通过 JavaScript 和 HTML DOM，能
 够动态地改变 HTML 元素的样式。
 
+## HTML 实体编码
+HTML Entity Encode 是一段以连字号（&）开头、以分号（;）结尾的字符串。用以显示不可见字符及保留字符 (如 HTML 标签)
+
+- ` `不可分的空格:＆nbsp;
+- `<`(小于符号):＆lt;
+- `>`(大于符号):＆gt; 
+- `＆`(与符号):＆amp;
+- `″`(双引号):＆quot;
+- `'`(单引号):'＆apos; 
+- ……
+
+在 HTML 转义时，仅仅只需要对六个字符进行编码: &, <, >, ", ', ```。可使用 he 这个库进行编码及转义
+
 ## `<!DOCTYPE>`
 
 <!DOCTYPE>声明位于 HTML 文档中的第一行，处于 `html`标签之前。告知浏览器的解析器用什么文档标准解析这个文档。
