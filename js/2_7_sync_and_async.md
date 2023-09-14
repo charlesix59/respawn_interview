@@ -406,6 +406,51 @@ function pLimit(time){
 }
 ```
 
+下面再来看一道字节面试题。
+
+```js
+/*
+  请实现一个 sum 函数，接收一个数组 arr 进行累加，并且只能使用add异步方法
+  
+  add 函数已实现，模拟异步请求后端返回一个相加后的值
+*/
+function add(a, b) {
+  return Promise.resolve(a + b);
+}
+ 
+function sum(arr) {}
+```
+
+这道题最简单的做法是通过 async-await 的方式串行解决，但是这样的话会因为add是异步任务而导致效率低下。
+所以最好能够使用一个并行的方法解决：
+
+```js
+function chunk(list, size) {
+  const l = [];
+  for (let i = 0; i < list.length; i++) {
+    const index = Math.floor(i / size);
+    l[index] ??= [];
+    l[index].push(list[i]);
+  }
+  return l;
+}
+
+async function sum(arr) {
+    if (arr.length === 1) return arr[0];
+    // 将两个分成一组做加法
+    const promises = chunk(arr, 2).map(([x, y]) =>
+        // 注意此时单数的情况
+        y === undefined ? x : add(x, y)
+    );
+    // 使用Promise.all同时请求所有两两相加的方法，再将得到的值传递给sum方法，递归的求结果之和
+    return Promise.all(promises).then((list) => sum(list));
+}
+```
+
+不过上述代码依然还存在问题。当并发量太大的时候，会一次性发出太多的网络请求导致网络堵塞。
+
+现在再看看上面那一道美团的面试题，是不是有什么新的想法😋
+
 ### Generator
 
 Generator 函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。整个 Generator 函数就是一个封装的异步任务，或者说是异步任务的容器。异步操作需要暂停的地方，都用`yield`语句注明

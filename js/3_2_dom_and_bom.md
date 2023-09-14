@@ -399,6 +399,58 @@ window是BOM的顶级对象
 - location.reload()，此方法可以重新刷新当前页面
 - location.assign(url)，打开传入的url并生成一条历史记录，等于直接为location赋值
 
+#### 如何解析URL中的参数
+如果不使用URL类，可以这样寻找URL中的参数
+
+```js
+function parse(url) {
+    // 一、夹杂在 ? 与 # 之前的字符就是 qs，使用 /\?([^/?#:]+)#?/ 正则来抽取
+    // 使用正则从 URL 中解析出 querystring
+    // 二、通过 Optional Chain 来避免空值错误
+    // 取match返回值的[1]是因为[0]是完全匹配值，[1]是第一个匹配组
+    const queryString = url.match(/\?([^/?#:]+)#?/)?.[1];
+
+    if (!queryString) {
+        return {};
+    }
+
+    return queryString.split("&").reduce((params, block) => {
+        // 三、如果未赋值，则默认为空字符串
+        const [_k, _v = ""] = block.split("=");
+        // 四、通过 decodeURIComponent 来转义字符，切记不可出现在最开头，以防 ?tag=test&title=1%2B1%3D2 出错
+        const k = decodeURIComponent(_k);
+        const v = decodeURIComponent(_v);
+
+        if (params[k] !== undefined) {
+            // 处理 key 出现多次的情况，设置为数组
+            params[k] = [].concat(params[k], v);
+        } else {
+            params[k] = v;
+        }
+        return params;
+    }, {});
+}
+```
+
+如果需要编码参数，可以使用下面的方法
+
+```js
+function stringify(data) {
+    // 将对象转化为数组
+    const pairs = Object.entries(data);
+    return pairs
+        .map(([k, v]) => {
+            // 判断v是否为空
+            let noValue = false;
+            if (v === null || v === undefined || typeof v === "object") {
+                noValue = true;
+            }
+            return `${encodeURIComponent(k)}=${noValue ? "" : encodeURIComponent(v)}`;
+        })
+        .join("&");
+}
+```
+
 ### navigator
 
 navigator 对象主要用来获取浏览器的属性，区分浏览器类型。属性较多，且兼容性比较复杂

@@ -451,3 +451,30 @@ const EventUtils = {
 </script>
 </html>
 ```
+
+在vue3中，使用proxy做数据的双向绑定。那么如何用proxy监听Object的变化呢？请看下面
+
+```js
+let obj = {
+    a:'元素a',
+    b:'元素b'
+}
+const handle = {
+    get:(obj,prop)=>{
+        console.log(`正在获取：${prop}`);
+        return obj[prop];
+    },
+    set:(obj,prop,value)=>{
+        console.log(`正在修改元素：将${prop}属性设置为${value}`);
+        obj[prop] = value;
+    }
+}
+const proxy = new Proxy(obj,handle);
+console.log(proxy.a)
+//正在获取：a
+// 元素a
+proxy.a='123'
+// 正在修改元素：将a属性设置为123
+console.log(proxy);
+//Proxy {a: "123", b: "元素b"}
+```

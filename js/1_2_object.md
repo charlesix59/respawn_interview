@@ -36,6 +36,52 @@ person["name"]
 - 可以访问包含语法错误的字符串的属性
 - 可以访问名为保留字或是关键字的属性
 
+#### lodash.get
+使用使用 get 函数可避免长链的 key 时获取不到属性而出现问题，此时进行异常避免时及其服务，如 o.a && o.a.b && o.a.b.c && o.a.b.c.d
+
+```typescript
+/**
+ * 获取一个长对象链上的属性
+ * @param object 需要取值的对象
+ * @param path 需要取值的路径
+ * @param defaultValue 如果取不到值返回的默认值
+ */
+const lodashGet = (
+    object: { [key: string]: any },
+    path: Array<string> | string,
+    defaultValue?: any
+): any => {
+    let result: any;
+    const findArrayPath = (path: Array<string>): any => {
+        // 路径为空直接返回
+        if (path.length === 0) {
+            return (result = defaultValue);
+        }
+        result = object;
+        // 根据传入的数组逐个搜索属性
+        for (const p of path) {
+            if (p in result) {
+                result = result[p];
+            } else {
+                result = defaultValue;
+                break;
+            }
+        }
+        return result;
+    };
+    if (Array.isArray(path)) {
+        result = findArrayPath(path);
+    } else {
+        // 去除括号并根据空白字符分割数组
+        let normalizedPath = path.replace(/\.|\[|\]/g, " ").split(/\s+/);
+        result = findArrayPath(normalizedPath);
+    }
+    return result;
+};
+```
+
+### 对象的方法和属性
+
 Object的每个实例都具有下列方法和属性：
 - `constructor`：用于创建当前对象的函数
 - `hasOwnProperty()`：用于检查给定属性在当前对象的实例中是否存在
@@ -314,6 +360,13 @@ sort函数接受比较函数后会自动传参。
 
 如果只想反转数组，`reverse`方法会更快
 
+#### 洗牌方法
+所谓的洗牌方法，即将一个数组中的数据打乱随机排序。我们可以使用sort方法快速完成
+
+```js
+const shuffle = (list) => list.sort((x, y) => Math.random() - 0.5);
+```
+
 ### 操作方法
 
 `concat()`方法可以**将原数组与接受的参数拼接形成一个新数组**，如果没有接受到参数，则返回原来数组的一个拷贝
@@ -347,6 +400,22 @@ console.log(arr2) //>> [1,2]
 - forEach()：对数组中的每一项运行指定函数，没有返回值
 - map()：对数组中的每一项都运行给定的函数，返回每次调用的结果组成的数组
 
+#### 实现flatMap
+flatMap() 方法是ES10新增的一个方法，它首先使用映射函数映射每个元素，然后将结果压缩成一个新数组。
+
+```typescript
+Array.prototype.flatMap = function (mapper) {
+    return this.map(mapper).flat();
+};
+
+Array.prototype.flat = function () {
+    return this.reduce((a, b) => a.concat(b), [])
+};
+
+res = [1, 2, [3], 4].flatMap((x) => x + 1);
+//=> [2, 3, '31', 5]
+```
+
 ### 递归方法
 
 `reduce()`方法，会从左往右遍历数组，并调用函数，接受两个参数，第一个为一个函数，
@@ -355,6 +424,63 @@ console.log(arr2) //>> [1,2]
 对于传入的函数，reduce会自动将其返回值作为下次调用的一个参数。第一次调用这个函数发生在数组的第二项，函数的第一个参数为其数组的第一项。
 
 `reduceRight()`方法，会从数组最后一项开始，逐个遍历直到第一项，其他行为与`reduce`方法相同
+
+#### 实现reduce方法
+
+```js
+function reduce(arr, cb, init) {
+    const l = arr.length;
+
+    // 如果数组为空，则失败
+    if (!l) {
+        if (init) return init;
+        else throw new TypeError("Error");
+    }
+
+    // 如果有init则将对应的参数传入回调函数
+    if (init) {
+        for (let i = 0; i < l; i++) {
+            init = cb(init, arr[i], i, arr);
+        }
+        return init;
+    } else {
+        let final;
+        for (let i = 0; i < l; i++) {
+            // 如果i是0的时候，因为没有初始值，则初始值为[0]，第一个值为[1]，然后使i++跳过i=1的情况
+            final = cb(!i ? arr[i++] : final, !i ? arr[i++] : arr[i], i, arr);
+        }
+        return final;
+    }
+}
+```
+
+#### 实现maxBy
+实现一个函数 maxBy，根据给定条件找到最大的数组项。如果最大的项有多个，则多个都返回，如下所示：
+
+```js
+const data = [{ value: 6 }, { value: 2 }, { value: 4 }, { value: 6 }];
+
+//=> [{ value: 6 }, { value: 6 }]
+maxBy(data, (x) => x.value);
+```
+
+可以使用reduce实现：
+```js
+const maxBy = (list, keyBy) => {
+    return list.slice(1).reduce(
+        (acc, x) => {
+            if (keyBy(x) > keyBy(acc[0])) {
+                return [x];
+            }
+            if (keyBy(x) === keyBy(acc[0])) {
+                return [...acc, x];
+            }
+            return acc;
+        },
+        [list[0]]
+    );
+};
+```
 
 ## 类数组
 
