@@ -48,6 +48,12 @@ IE盒模型：属性width，height包含content、border和padding，指的是co
 我已经将根元素的margin设置为0了，可以看到父元素的上方还是有10px的margin，同时如果查看子元素，
 也可以看到margin的存在
 
+## inline
+
+### css inline元素的margin与padding是否有效
+
+inline 元素的 margin 与 padding 左右生效，上下生效，准确说在**上下方向不会使其它元素受到挤压，仿佛不生效**
+
 ## IFC
 IFC（inline Formatting Context）叫做“行级格式化上下”
 布局规则如下：
