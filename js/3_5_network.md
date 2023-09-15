@@ -73,6 +73,18 @@ _但是请不要使用setAttribute()或者修改元素节点的方式修改value
 
 对于多选框，就只能一项一项读取然后查看其selected属性
 
+## 跨域
+
+协议，域名，端口，三者有一不一样，就是跨域
+
+跨域是浏览器安全策略的限制
+
+解决跨域的方法有：
+- CORS：在服务器端设置几个响应头，如 Access-Control-Allow-Origin: *
+- 反向代理：在 nginx/traefik/haproxy 等反向代理服务器中设置为同一域名 
+- JSONP：详解见下文JSONP部分
+- webSocket：详解见下文websocket部分
+
 ## 跨文档消息传递
 跨文档消息传递（cross-document messaging），简称XDM，指的是在不同域的页面间传递信息。
 XDM的核心方法是`postMessage()`方法，它接受两个参数：一条消息（现代浏览器可以传入任意数据，古早浏览器只能传递字符串）和一个表示消息接收方的域的字符串。
