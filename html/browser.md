@@ -190,6 +190,7 @@ cookie是纯文本，没有可执行代码。
 5. 在非IE下的浏览中可以本地打开。IE浏览器要在服务器中打开。
 6. localStorage本质上是对字符串的读取，如果存储内容多的话会消耗内存空间，会导致页面变卡
 7. localStorage受同源策略的限制
+8. 不同浏览器无法共享 localStorage，但是同浏览器不同页面可以共享
 
 #### 写入
 
@@ -219,6 +220,37 @@ localStorage.clear()
 
 当前页面对storage的操作会触发其他页面的storage事件
 
+#### 封装一个带过期时间的localStorage
+
+```js
+// todo
+function initLocalStorage() {
+  localStorage.setItem = function (key, value, time = 1000) {
+    const expiresTime = Date.now() + time * 1000;
+    const payload = {
+      __data: value,
+      __expiresTime: expiresTime,
+    };
+    Storage.prototype.setItem.call(localStorage, key, JSON.stringify(payload));
+  };
+  localStorage.getItem = function (key) {
+    const value = Storage.prototype.getItem.call(localStorage, key);
+    if (typeof value === "string") {
+      const jsonVal = JSON.parse(value);
+      if (jsonVal.__expiresTime) {
+        if (jsonVal.__expiresTime >= Date.now()) {
+          return JSON.stringify(jsonVal.__data);
+        } else {
+          return null;
+        }
+      }
+    }
+    return value;
+  };
+}
+initLocalStorage();
+```
+
 ### SessionStorage
 
 和localStorage类似
@@ -227,6 +259,7 @@ localStorage.clear()
 
 1. sessionStorage要求协议、主机名、端口相同并且在同一窗口（也就是浏览器的标签页）下，才能读取/修改到同一份数据
 2. sessionStorage当会话结束（当前页面关闭的时候，自动销毁）
+3. 不同页面或标签页间无法共享 sessionStorage 的信息。
 
 ### 应用缓存
 
