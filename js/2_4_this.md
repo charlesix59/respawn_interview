@@ -211,3 +211,17 @@ Function.prototype.myBind = function(thisArg,...args){
     return funcForBind;
 }
 ```
+
+### softBind
+
+bind 函数多次调用会已第一次绑定的 this 为准，softbind 已最后一次绑定传入的 this 为准
+
+```js
+Function.prototype.softBind = function (obj, ...args) {
+    const fn = this;
+    return function (...args2) {
+        // 如果this是global说明是在外部在此调用了bind，否则this应该是之前绑定过的对象
+        return fn.apply(this === global ? obj : this, args.concat(args2));
+    };
+};
+```

@@ -490,7 +490,9 @@ const maxBy = (list, keyBy) => {
 1. `Array.prototype.slice.call(arrayLike);`
 2. `Array.prototype.splice.call(arrayLike);`
 3. `Array.prototype.concat.apply([], arrayLike);`
-4. `Array.from(arrayLike);`
+4. `Array.from(arrayLike);`（ES6）
+5. `Array.prototype.filter.call(arrayLike, (x) => 1);` （需要考虑稀疏数组即空数组）
+6. `Array.prototype.map.call(arrayLike, (x) => x);`（需要考虑稀疏数组）
 
 ## Date
 

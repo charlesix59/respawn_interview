@@ -499,3 +499,31 @@ function currying(fn, length) {
     }
 }
 ```
+
+## 函数合成
+
+在我们使用函数式编程时，我们经常会有许多高阶函数与函数流，如果我们在函数中嵌套了太多或者函数链太长，比如
+`mul(add(1,2),add(3,4))`或`a.pow2().pow2().pow2()`，这样我们可以用函数合成的方式将几个经常会调用
+的函数合成一个新的函数。
+
+在redux中实现函数合成的代码如下所示：
+
+```js
+function compose(...funcs) {
+    if (funcs.length === 0) {
+        // 如果没有参数则返回默认函数
+        return (arg) => arg;
+    }
+
+    if (funcs.length === 1) {
+        return funcs[0];
+    }
+
+    // 使用reduce递归的调用函数
+    return funcs.reduce(
+        (a, b) =>
+            (...args: any) =>
+                a(b(...args))
+    );
+}
+```
