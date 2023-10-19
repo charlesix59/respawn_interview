@@ -153,6 +153,10 @@ cookie是纯文本，没有可执行代码。
 
 把要删除的cookie的过期时间设置成已过去的时间,path/domain/这几个选项一定要旧cookie 保持一样。
 
+#### CookieStore
+
+上述CRUD操作可以使用CookieStore去完成，不过这依然属于实验性功能
+
 #### 属性
 
 - 过期时间：如果我们想长时间存放一个cookie。需要在设置这个cookie的时候同时给他设置一个过期的时间。
