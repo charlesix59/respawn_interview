@@ -30,6 +30,10 @@ Flex是FlexibleBox的缩写，意为"弹性布局"，用来为盒状模型提供
 - **align-self**：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性
 默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
 
+![flex](images/flex.png)
+
+> 图片源自阮一峰 https://ruanyifeng.com/blog/2015/07/flex-grammar.html
+
 # grid
 
 Grid 布局即网格布局，是一个二维的布局方式，由纵横相交的两组网格线形成的框架性布局结构，能够同时处理行与列。
@@ -39,8 +43,8 @@ Grid 布局即网格布局，是一个二维的布局方式，由纵横相交的
 
 ## grid容器
 - **display**：grid 或 display：inline-grid 来创建一个网格容器 
-  - display：grid 则该容器是一个块级元素 
-  - display: inline-grid 则容器元素为行内元素
+  - grid 则该容器是一个块级元素 
+  - inline-grid 则容器元素为行内元素
 - **grid-template-columns**：属性设置列宽
   - 数值（多个）或repeat函数
   - auto-fill：示自动填充，让一行（或者一列）中尽可能的容纳更多的单元格 
