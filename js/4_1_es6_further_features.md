@@ -163,9 +163,34 @@ console.log(iterator.next())    //>>{value:111,done:false}
 
 集合。实现了iterator接口，所以可以使用拓展运算符和`for..of`进行遍历，集合的属性和方法
 
+实例方法：
+
+- `add`: 若无相同项则插入
+- `clear`: 清除所有
+- `delete`: 移除与 value 关联的元素，并返回一个布尔值来表示是否移除成功
+- `entries`: 返回一个包含 Set 对象中的代表每个元素的 [value, value] 数组的迭代器对象
+- `foreach`: 按照值插入的顺序为每个值调用一次 callbackFn
+- `has`: 给定值在 Set 对象中是否存在
+- `values`: 按插入顺序生成 Set 对象中每个元素的值
+- `keys`: 同 `values`
+
+⚠：没有get方法哦~
+
 ### Map
 
 映射。实现了iterator接口，所以可以使用拓展运算符和`for..of`进行遍历Map的属性和方法
+
+实例方法：
+
+- `clear`: 清除所有
+- `delete`: 移除键值对，并返回一个布尔值来表示是否移除成功
+- `entries`: 返回一个包含 Set 对象中的代表每个元素的 [value, value] 数组的迭代器对象
+- `foreach`: 按照值插入的顺序为每个值调用一次 callbackFn
+- `get`: 返回与指定的键 key 关联的值
+- `has`: 给定值在 Set 对象中是否存在
+- `values`: 按插入顺序生成 Map 对象中每个元素的值
+- `keys`: 按插入顺序生成 Map 对象中每个元素的键
+- `set`: 在 Map 对象中设置与指定的键 key 关联的值，并返回 Map 对象
 
 ### Class
 
