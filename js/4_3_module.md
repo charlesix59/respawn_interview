@@ -172,7 +172,7 @@ function test(ele) {
 ```
 如上例所示，使用import命令的时候，用户需要知道所要加载的变量名或函数名。
 其实ES6还提供了export default命令，为模块指定默认输出，对应的import语句不需要使用大括号。
-这也更趋近于ADM的引用写法。
+这也更趋近于AMD的引用写法。
 ```js
 /** export default **/
 //定义输出
